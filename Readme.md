@@ -14,7 +14,7 @@ O projeto ainda está em desenvolvimento e visa atender à ementa do curso. Dema
 - [x] Tela de login e autenticação
 - [x] Tela home
 - [x] Configuração de navegação
-- [ ] Telas adicionais
+- [ ] Telas adicionais cjhavjevc
 - [ ] 
 - [ ] Fila
 - [ ] Lista Duplamente Encadeada
