@@ -1,13 +1,11 @@
-
-Conteúdo semestral de AEDS I
-
+## Trabalho Final Tópicos em Desenvolvimento em Dispositivos Mobile
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
 <img src="http://jogoveio.com.br/wp-content/uploads/2018/04/computador-charge-jogoveio.png" alt="imagem">
 
 > Este repositório visa atender às turmas de Algoritmos e Estruturas de Dados I, fornecendo resoluções de exercícios resolvidos em aula e estruturas de dados para consulta e execução dos Trabalhos Práticos.
 
-### Ajustes e melhorias
+### Tópicos a serem desenvolvidos
 
 O projeto ainda está em desenvolvimento e visa atender à ementa do curso. Demais atualizações serão especificadas nas seguintes tarefas:
 
@@ -32,20 +30,6 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 * Ter sido aprovado em Introdução à Programação.
 * Você instalou e configurou adequadamente o Ambiente de Desenvolvimento (compilador, editor de texto, etc.) `<MinGW / Visual Studio Code>`.
 * Ter os conhecimentos básicos necessários em `<Git / Github>`.
-
-<!--## 🚀 Instalando <nome_do_projeto>
-
-Para instalar o <nome_do_projeto>, siga estas etapas:
-
-Linux e macOS:
-```
-<comando_de_instalação>
-```
-
-Windows:
-```
-<comando_de_instalação>
-```-->
 
 ## ☕ Clonando o Projeto Algoritmos e Estruturas de Dados I
 
@@ -103,7 +87,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 ## 😄 Seja um dos contribuidores<br>
 
-Quer fazer parte desse projeto? Crie um branch com resoluções alternativas das questões, seguindo a mesma estrutura do projeto principal. Você irá aparecer aqui! 
+Quer fazer parte desse projeto? Crie um branch com novas , seguindo a mesma estrutura do projeto principal. Você irá aparecer aqui! 
 
 ## 📝 Licença
 
