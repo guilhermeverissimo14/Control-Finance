@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "control-finance",
+    "slug": "control-finance",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
