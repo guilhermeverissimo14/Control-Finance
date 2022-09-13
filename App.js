@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, } from 'react-native';
+import colors from './src/global/color';
 
 export default function App() {
   return (
+
     <View style={styles.container}>
-      <Text>Control Finance!</Text>
-      <StatusBar style="auto" />
+      <Image
+        source={require('')}
+        resizeMode="contain"
+        style={{ width: '50%', height: '30%' }}
+      />
+
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f06292',
+    backgroundColor: colors('greenPrimary'),
     alignItems: 'center',
     justifyContent: 'center',
   },
