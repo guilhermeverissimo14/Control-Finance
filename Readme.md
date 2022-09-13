@@ -3,45 +3,32 @@
 
 <img src="http://jogoveio.com.br/wp-content/uploads/2018/04/computador-charge-jogoveio.png" alt="imagem">
 
-> Este repositório visa atender às turmas de Algoritmos e Estruturas de Dados I, fornecendo resoluções de exercícios resolvidos em aula e estruturas de dados para consulta e execução dos Trabalhos Práticos.
+> Este repositório visa desenvolver uma aplicação mobile como parte da arpovação da disciplina Tópicos em Desenvolvimento em Dispositivos Mobile.
 
 ### Tópicos a serem desenvolvidos
 
-O projeto ainda está em desenvolvimento e visa atender à ementa do curso. Demais atualizações serão especificadas nas seguintes tarefas:
+O projeto ainda está em desenvolvimento e visa atender as pessoas com a vida financeira desorganizada. Demais atualizações serão especificadas nas seguintes tarefas:
 
-- [x] Configuração do Projeto
-- [x] Instalação de dependências básicas
-- [x] Tela de login e autenticação
-- [x] Tela home
-- [x] Configuração de navegação
-- [ ] Telas adicionais cjhavjevc
-- [ ] 
-- [ ] Fila
-- [ ] Lista Duplamente Encadeada
-
-- [ ] Pilha com Ponteiro
-- [ ] Fila com Ponteiro
+- [X] Configuração do Projeto
+- [X] Instalação de dependências básicas
+- [ ] Tela de login e autenticação
+- [ ] Tela Home
+- [ ] Telas Adicionar Capital e Despesa
+- [ ] Tela Loading
+- [ ] Tela de Relatório
+- [ ] Tela de Cadastro
 
 
 ## 💻 Pré-requisitos sei lá
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 <!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Ter sido aprovado em Introdução à Programação.
 * Você instalou e configurou adequadamente o Ambiente de Desenvolvimento (compilador, editor de texto, etc.) `<MinGW / Visual Studio Code>`.
 * Ter os conhecimentos básicos necessários em `<Git / Github>`.
 
-## ☕ Clonando o Projeto Algoritmos e Estruturas de Dados I
-
-Para usar este projeto localmente, siga estas etapas:
-
-```
-git clone https://github.com/edutrindade/Algoritmos-e-Estruturas-de-Dados-I
-```
-
-## 📫 Contribuindo para Algoritmos e Estruturas de Dados I
+## 📫 Contribuindo para o Control Finance
 <!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
-Para contribuir com Algoritmos-e-Estruturas-de-Dados-I, siga estas etapas:
+Para contribuir com Control-Finance, siga estas etapas:
 
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
@@ -58,26 +45,18 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/edutrindade">
-        <img src="https://avatars.githubusercontent.com/u/39175147?s=96&v=4" width="100px;" alt="Foto do Eduardo Trindade"/><br>
+      <a href="https://github.com/guilhermeverissimo14">
+        <img src="https://avatars.githubusercontent.com/u/105402150?v=4" width="100px;" alt="Foto do José Guilherme"/><br>
         <sub>
-          <b>Eduardo Trindade</b>
+          <b>José Guilherme</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/ErickSenaGodinho">
-        <img src="https://avatars.githubusercontent.com/u/52547320?v=4" width="100px;" alt="Foto do Erick Sena"/><br>
+      <a href="hhttps://github.com/LuanPatrik">
+        <img src="https://avatars.githubusercontent.com/u/72170325?v=4" width="100px;" alt="Foto do Luan Patrik"/><br>
         <sub>
-          <b>Erick Sena</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/gKaicon">
-        <img src="https://avatars.githubusercontent.com/u/104071769?v=4" width="100px;" alt="Foto do Gabriel Kaicon"/><br>
-        <sub>
-          <b>Gabriel Kaicon</b>
+          <b>Luan Patrik</b>
         </sub>
       </a>
     </td>
@@ -87,10 +66,10 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 ## 😄 Seja um dos contribuidores<br>
 
-Quer fazer parte desse projeto? Crie um branch com novas , seguindo a mesma estrutura do projeto principal. Você irá aparecer aqui! 
+Quer fazer parte desse projeto? Crie uma branch nova , seguindo a mesma estrutura do projeto principal. Você irá aparecer aqui! 
 
 ## 📝 Licença
 
-Esse projeto é de uso livre para qualquer estudante de Algoritmos e amante de programação.
+Esse projeto é de uso livre para qualquer pessoa que tenha a vida financeira desorganizada, estudante de Mobile e amante de programação.
 
-[⬆ Voltar ao topo](#nome-do-projeto)<br>
+[⬆ Voltar ao topo](#Control-Finance)<br>
