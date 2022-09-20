@@ -25,7 +25,6 @@ export default function SingIn() {
                     </Text>
                 </TouchableOpacity>
         </View>
-
         </View >
     )
 }
@@ -37,15 +36,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     form: {
+        flex: 0.5,
+        width: "75%",
         justifyContent: 'center',
     },
     button: {
+        
         backgroundColor: '#95FEEC',
         padding: 10,
         width: '100%',
-        borderRadius: 12,
+        borderRadius: 30,
         top: 15
     },
+    textButton: {
+        fontSize: 20,
+        color: '#142F30',
+        textTransform: 'uppercase',
+        textAlign: 'center'
+    }
 
 });
 
