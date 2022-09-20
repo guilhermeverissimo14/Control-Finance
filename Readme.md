@@ -3,44 +3,39 @@
 
 <img src="http://jogoveio.com.br/wp-content/uploads/2018/04/computador-charge-jogoveio.png" alt="imagem">
 
-> Este repositório visa desenvolver uma aplicação mobile como parte da arpovação da disciplina Tópicos em Desenvolvimento em Dispositivos Mobile.
+> Este repositório visa o desenvolvimento de uma aplicação mobile referente aos conteúdos aprendidos na disciplina. Essa aplicação faz parte da ementa da disciplina, servindo como requisito para aprovação na mesma.
 
 ### Tópicos a serem desenvolvidos
 
-O projeto ainda está em desenvolvimento e visa atender as pessoas com a vida financeira desorganizada. Demais atualizações serão especificadas nas seguintes tarefas:
+O projeto ainda está em desenvolvimento e e demais atualizações serão especificadas nas seguintes tarefas:
 
-- [X] Configuração do Projeto
-- [X] Instalação de dependências básicas
+- [ ] Configuração do Projeto
+- [ ] Instalação de dependências básicas
 - [ ] Tela de login e autenticação
-- [ ] Tela Home
-- [ ] Telas Adicionar Capital e Despesa
-- [ ] Tela Loading
-- [ ] Tela de Relatório
-- [ ] Tela de Cadastro
+- [ ] Tela home
+- [ ] Configuração de navegação
+- [ ] Telas adicionais
 
 
 ## 💻 Pré-requisitos sei lá
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 <!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você instalou e configurou adequadamente o Ambiente de Desenvolvimento (compilador, editor de texto, etc.) `<MinGW / Visual Studio Code>`.
+
+* Você instalou e configurou adequadamente o Ambiente de Desenvolvimento (compilador, editor de texto, etc.) `<Visual Studio Code>`.
 * Ter os conhecimentos básicos necessários em `<Git / Github>`.
 
-## 📫 Contribuindo para o Control Finance
-<!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
-Para contribuir com Control-Finance, siga estas etapas:
+## ☕ Clonando o Projeto Control Finance
 
-1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
-3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
-5. Crie a solicitação de pull.
+Para usar este projeto localmente, siga estas etapas:
 
-Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+```
+git clone https://github.com/guilhermeverissimo14/Control-Finance.git
+```
 
 ## 🤝 Colaboradores
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+Desenvolvedores do projeto:
 
 <table>
   <tr>
@@ -53,7 +48,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </a>
     </td>
     <td align="center">
-      <a href="hhttps://github.com/LuanPatrik">
+      <a href="https://github.com/LuanPatrik">
         <img src="https://avatars.githubusercontent.com/u/72170325?v=4" width="100px;" alt="Foto do Luan Patrik"/><br>
         <sub>
           <b>Luan Patrik</b>
@@ -70,6 +65,6 @@ Quer fazer parte desse projeto? Crie uma branch nova , seguindo a mesma estrutur
 
 ## 📝 Licença
 
-Esse projeto é de uso livre para qualquer pessoa que tenha a vida financeira desorganizada, estudante de Mobile e amante de programação.
+Esse projeto é de uso livre para qualquer estudante de programação.
 
 [⬆ Voltar ao topo](#Control-Finance)<br>
