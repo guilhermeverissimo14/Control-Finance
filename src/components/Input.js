@@ -1,35 +1,63 @@
-import React from 'react';
-import { TextInput, StyleSheet, KeyboardAvoidingView, Platform, } from 'react-native';
+import React,{useState} from 'react';
+import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform,TouchableOpacity } from 'react-native';
 import colors from '../global/color';
 
-export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next" }) {
+export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
+    const [hidePass, setHidePass] = useState(true);
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-    
-            <TextInput
-                placeholder={placeholder}
-                placeholderTextColor={colors("black")}
-                secureTextEntry={security}
-                keyboardType={keyboardType}
-                autoCorrect={autoCorrect}
-                returnKeyType={returnKeyType}
-                style={styles.input}
-            />
+            <View style={styles.inputArea}>
+                {icon === "user" && (
+                    <Image
+                        source={require('../assets/login.png')}
+                        resizeMode="contain"
+                     //style={{ width: '35%', height: '100%' }}
+                    />
+                )}
+                {icon === "pass" && (
+                    <Image
+                        source={require('../assets/password.png')}
+                        resizeMode="contain"
+                     //style={{ width: '100%', height: '100%' }}
+                    />
+                )}
+
+                <TextInput
+                    placeholder={placeholder}
+                    placeholderTextColor={colors("black")}
+                    secureTextEntry={security}
+                    keyboardType={keyboardType}
+                    autoCorrect={autoCorrect}
+                    returnKeyType={returnKeyType}
+                    style={styles.input}
+                />
+
+            </View>
+
+
         </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
+
     input: {
-        width: "100%",
+        width: '80%',
+        fontSize: 16,
+        paddingHorizontal: 10,
+
+    },
+    inputArea: {
+        flexDirection: 'row',
+        width: '100%',
+        marginBottom: 20,
+        alignItems: 'center',
         borderBottomWidth: 1,
         borderColor: colors("primary"),
-        color: colors("white"),
-        fontSize: 16,
-        padding: 10,
-        marginBottom: 20,
+        color: colors("black"),
         backgroundColor: colors("white"),
-        borderRadius: 8,
+        borderRadius: 10,
+        
     },
-    
+
 });

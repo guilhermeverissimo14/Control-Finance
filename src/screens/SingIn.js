@@ -1,13 +1,21 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
+
 export default function SingIn() {
     const navigation = useNavigation();
+
     function handleSigIn() {
-        navigation.navigate("Home")
+        navigation.navigate("home");
+    }
+    function handleRegister() {
+        navigation.navigate("Register");
+    }
+    function handlePassword() {
+        navigation.navigate("Register");
     }
     return (
         <View style={styles.container}>
@@ -16,15 +24,30 @@ export default function SingIn() {
                 resizeMode="contain"
                 style={{ width: '50%', height: '30%' }}
             />
+            
             <View style={styles.form}>
-                <Input placeholder="E-mail" keyboardType="email-address" />
-                <Input placeholder="Senha" keyboardType="password" />
-                <TouchableOpacity style={styles.button} onPress={handleSigIn} >
-                    <Text style={styles.textButton}>
-                       Acessar
+            
+                <Input  placeholder="E-mail" keyboardType="email-address" icon="user"/>
+                <Input placeholder="Senha" keyboardType="password" security  icon="pass"/>
+
+                <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
+                    <Text style={styles.textForgot}>
+                        Esqueceu sua senha?
                     </Text>
                 </TouchableOpacity>
-        </View>
+
+                <TouchableOpacity style={styles.button} onPress={handleSigIn } >
+                    <Text style={styles.textButton}>
+                        Acessar
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.resgister} onPress={handleRegister}>
+                    <Text style={styles.textForgot}>
+                        Cadastre-se
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View >
     )
 }
@@ -39,21 +62,35 @@ const styles = StyleSheet.create({
         flex: 0.5,
         width: "75%",
         justifyContent: 'center',
+        
     },
     button: {
-        
+
         backgroundColor: '#95FEEC',
         padding: 10,
         width: '100%',
         borderRadius: 30,
-        top: 15
+        marginVertical: 15
     },
     textButton: {
         fontSize: 20,
         color: '#142F30',
         textTransform: 'uppercase',
         textAlign: 'center'
-    }
+        
+    },
+    forgot: {
+        marginVertical: 5,
+        
 
+    },
+    textForgot: {
+        color: "white",
+        fontSize: 18,
+    },
+    resgister:{
+        alignItems: 'center',
+        top: 15,
+    }
 });
 
