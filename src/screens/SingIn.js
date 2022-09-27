@@ -13,7 +13,7 @@ export default function SingIn() {
         navigation.navigate("home");
     }
     function handleRegister() {
-        navigation.navigate("Register");
+        navigation.navigate("register");
     }
     function handlePassword() {
         navigation.navigate("Register");
