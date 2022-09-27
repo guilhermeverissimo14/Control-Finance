@@ -17,7 +17,7 @@ export default function Header() {
                     resizeMode="contain"
 
                 />
-                <Text style={styles.User}>Olá Guilherme</Text>
+                <Text style={styles.User}>Olá Luana</Text>
 
             </View>
         </View>

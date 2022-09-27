@@ -3,7 +3,7 @@ import SingIn from '../screens/SingIn';
 import Home from '../screens/Home/Home';
 const { Navigator, Screen } = createNativeStackNavigator();
 
-const Tab = createNativeStackNavigator();
+
 
 export default function AppRoutes() {
     return (

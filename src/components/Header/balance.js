@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet,Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-web';
 import colors from '../../global/color';
 
@@ -14,15 +14,16 @@ export default function Balance() {
 
                         <Text style={styles.simbolo1}>R$</Text>
                         <Text style={styles.valor}> 1800,00</Text>
-                        <Image style={styles.icon}
-                            source={require('../../assets/Edit.png')}
-                            resizeMode="contain"
-                        />
-
+                        <TouchableOpacity>
+                            <Image style={styles.icon}
+                                source={require('../../assets/Edit.png')}
+                                resizeMode="contain"
+                            />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
-                <View style={styles.line}/>
+                <View style={styles.line} />
 
                 <View style={styles.item1}>
                     <Text style={styles.text}>Despesas:</Text>
@@ -30,14 +31,16 @@ export default function Balance() {
 
                         <Text style={styles.simbolo}> R$</Text>
                         <Text style={styles.valor1}> 1800,00 </Text>
-                        <Image style={styles.icon1}
-                            source={require('../../assets/Edit.png')}
-                            resizeMode="contain"
-                        />
+                        <TouchableOpacity>
+                            <Image style={styles.icon1}
+                                source={require('../../assets/Edit.png')}
+                                resizeMode="contain"
+                            />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
-                <View style={styles.line}/>
+                <View style={styles.line} />
 
                 <View style={styles.item2}>
                     <Text style={styles.text}>Saldo:</Text>
@@ -45,7 +48,7 @@ export default function Balance() {
 
                         <Text style={styles.simbolo2}> R$ </Text>
                         <Text style={styles.valor2}> 1800,00</Text>
-                
+
                     </View>
                 </View>
             </View>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     valor: {
         color: '#063263',
         fontSize: 22,
-        
+
     },
     valor1: {
         color: 'red',
@@ -105,27 +108,27 @@ const styles = StyleSheet.create({
     simbolo: {
         fontSize: 22,
         color: 'white',
-        marginStart: 14,     
+        marginStart: 14,
     },
     simbolo1: {
         fontSize: 22,
         color: 'white',
-        marginStart: 40,     
+        marginStart: 40,
     },
     simbolo2: {
         fontSize: 22,
         color: 'white',
-        marginStart: 48,     
+        marginStart: 48,
     },
-    icon:{
-        marginStart: 31,
+    icon: {
+        marginStart: 32,
     },
-    icon1:{
-        marginStart: 28,
+    icon1: {
+        marginStart: 20,
     },
     line: {
-        borderBottomWidth:1,
+        borderBottomWidth: 1,
         borderColor: 'white',
-        marginVertical:10,
+        marginVertical: 10,
     },
 });
