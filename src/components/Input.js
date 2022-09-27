@@ -1,5 +1,7 @@
-import React,{useState} from 'react';
-import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform,TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 import colors from '../global/color';
 
 export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
@@ -11,17 +13,17 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     <Image
                         source={require('../assets/login.png')}
                         resizeMode="contain"
-                     //style={{ width: '35%', height: '100%' }}
+                    //style={{ width: '35%', height: '100%' }}
                     />
                 )}
                 {icon === "pass" && (
                     <Image
                         source={require('../assets/password.png')}
                         resizeMode="contain"
-                     //style={{ width: '100%', height: '100%' }}
+                    //style={{ width: '100%', height: '100%' }}
                     />
                 )}
-
+                
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={colors("black")}
@@ -30,7 +32,9 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     autoCorrect={autoCorrect}
                     returnKeyType={returnKeyType}
                     style={styles.input}
+                
                 />
+                
 
             </View>
 
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
         color: colors("black"),
         backgroundColor: colors("white"),
         borderRadius: 10,
-        
+
     },
 
 });
