@@ -8,8 +8,8 @@ export default function Graphic() {
         <View style={styles.container}>
             <View style={styles.principal}>
                 <Image
-                   source={require('../../assets/graphic.png')}
-                   resizeMode="contain"  
+                   //source={require('../../assets/graphic.png')}
+                  // resizeMode="contain"  
                 />
             </View>
         </View>
