@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,Image } from 'react-native';
 import { TextInput } from 'react-native-web';
 import colors from '../../global/color';
 
@@ -12,10 +12,14 @@ export default function Balance() {
                     <Text style={styles.text}>Capital:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo}> R$</Text>
+                        <Text style={styles.simbolo1}>R$</Text>
                         <Text style={styles.valor}> 1800,00</Text>
-                      
-                    </View>      
+                        <Image style={styles.icon}
+                            source={require('../../assets/Edit.png')}
+                            resizeMode="contain"
+                        />
+
+                    </View>
                 </View>
 
                 <View style={styles.line}/>
@@ -26,7 +30,10 @@ export default function Balance() {
 
                         <Text style={styles.simbolo}> R$</Text>
                         <Text style={styles.valor1}> 1800,00 </Text>
-
+                        <Image style={styles.icon1}
+                            source={require('../../assets/Edit.png')}
+                            resizeMode="contain"
+                        />
                     </View>
                 </View>
 
@@ -36,18 +43,18 @@ export default function Balance() {
                     <Text style={styles.text}>Saldo:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo}> R$ </Text>
+                        <Text style={styles.simbolo2}> R$ </Text>
                         <Text style={styles.valor2}> 1800,00</Text>
-
+                
                     </View>
                 </View>
             </View>
-        </View> 
+        </View>
     );
 }
 const styles = StyleSheet.create({
     container: {
-        
+
     },
     principal: {
         padding: 10,
@@ -62,12 +69,15 @@ const styles = StyleSheet.create({
     },
     item: {
         flexDirection: 'row',
+        marginStart: 18,
     },
     item1: {
         flexDirection: 'row',
+        marginStart: 18,
     },
     item2: {
         flexDirection: 'row',
+        marginStart: 18,
     },
     text: {
         fontSize: 22,
@@ -76,22 +86,42 @@ const styles = StyleSheet.create({
 
     valores: {
         flexDirection: 'row',
+        marginStart: 13,
     },
-    valor:{
+    valor: {
         color: '#063263',
         fontSize: 22,
+        
     },
-    valor1:{
+    valor1: {
         color: 'red',
         fontSize: 22,
     },
-    valor2:{
+    valor2: {
         color: '#90ff7e',
         fontSize: 22,
+        marginStart: 0
     },
-    simbolo:{
+    simbolo: {
         fontSize: 22,
         color: 'white',
+        marginStart: 14,     
+    },
+    simbolo1: {
+        fontSize: 22,
+        color: 'white',
+        marginStart: 40,     
+    },
+    simbolo2: {
+        fontSize: 22,
+        color: 'white',
+        marginStart: 48,     
+    },
+    icon:{
+        marginStart: 31,
+    },
+    icon1:{
+        marginStart: 28,
     },
     line: {
         borderBottomWidth:1,

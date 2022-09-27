@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SingIn() {
     const navigation = useNavigation();
