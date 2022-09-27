@@ -15,13 +15,13 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     />
                 )}
                 {icon === "pass" && (
-                    <Image
+                    <Image 
                         source={require('../assets/password.png')}
                         resizeMode="contain"
                      //style={{ width: '100%', height: '100%' }}
                     />
                 )}
-
+                
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={colors("black")}

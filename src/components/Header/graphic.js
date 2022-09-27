@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         
     },
     principal: {
-
+        padding: 10,
         justifyContent: 'center',
         backgroundColor: colors('greenSecondary'),
         borderRadius: 12,

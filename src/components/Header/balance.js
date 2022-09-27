@@ -12,21 +12,25 @@ export default function Balance() {
                     <Text style={styles.text}>Capital:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo}>R$</Text>
+                        <Text style={styles.simbolo}> R$</Text>
                         <Text style={styles.valor}> 1800,00</Text>
-
-                    </View>
+                      
+                    </View>      
                 </View>
+
+                <View style={styles.line}/>
 
                 <View style={styles.item1}>
                     <Text style={styles.text}>Despesas:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo}>R$</Text>
+                        <Text style={styles.simbolo}> R$</Text>
                         <Text style={styles.valor1}> 1800,00 </Text>
 
                     </View>
                 </View>
+
+                <View style={styles.line}/>
 
                 <View style={styles.item2}>
                     <Text style={styles.text}>Saldo:</Text>
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
         
     },
     principal: {
-
+        padding: 10,
         justifyContent: 'center',
         backgroundColor: colors('greenSecondary'),
         borderRadius: 12,
@@ -88,5 +92,10 @@ const styles = StyleSheet.create({
     simbolo:{
         fontSize: 22,
         color: 'white',
+    },
+    line: {
+        borderBottomWidth:1,
+        borderColor: 'white',
+        marginVertical:10,
     },
 });
