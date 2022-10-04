@@ -1,126 +1,65 @@
 import React, {useState} from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, TextInput, Text, StyleSheet, StatusBar, Alert } from 'react-native';
 import Stepper from "react-native-stepper-ui";
 import colors from '../global/color'
 import { useNavigation } from '@react-navigation/native';
 
+const Step1 = () => {
+    return (
+        <View style={styles.element}>
+            <Text style={styles.text}>1 - Informe seu nome:*</Text>
+            <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+        </View>
+    )
+}
+
+const Step2 = () => {
+    return (
+        <View style={styles.element}>
+            <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
+            <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+        </View>
+    )
+}
+
+const Step3 = () => {
+    return (
+        <View style={styles.element}>
+            <Text style={styles.text}>3 - Informe uma senha:*</Text>
+            <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+        </View>
+    )
+}
+
+const Step4 = () => {
+    return (
+        <View style={styles.element}>
+            <Text style={styles.text}>4 - Confirme sua senha:*</Text>
+            <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+        </View>
+    )
+}
+
+const content = [
+    <Step1 />, <Step2 />, <Step3 />,<Step4 />
+];
+
 export default function Cadastre() {
     const navigation = useNavigation(true);
-    const [active, setActive] = useState(1);
+    const [active, setActive] = useState(0);
 
-    const MyComponent = (props) => {
-        return (
-          <View>
-            <Text>{props.title}</Text>
-          </View>
-        );
-    };
-
-    const content = [
-        <MyComponent title="Nome" />,
-        <MyComponent title="Email" />,
-        <MyComponent title="Senha" />,
-    ];
-
-    function handlePreview() {
-        setActive(active - 1);
-    }
-
-    function handleNext() {
-        setActive(active + 1);
-    }
-
-    const Step1 = () => {
-        return (
-            <>
-                <Text style={styles.text}>1 - Informe seu nome:*</Text>
-                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <TouchableOpacity onPress={handleNext}>
-                    <Image style={styles.arrowRight1}
-                        source={require('../assets/arrowRight.png')}
-                    />
-                </TouchableOpacity>
-            </>
-        )
-    }
-
-    const Step2 = () => {
-        return (
-            <>
-                <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
-                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <View style={styles.align}>   
-                    <TouchableOpacity onPress={handlePreview}>
-                        <Image style={styles.arrowLeft}
-                            source={require('../assets/arrowLeft.png')}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNext}>
-                        <Image style={styles.arrowRight}
-                            source={require('../assets/arrowRight.png')}
-                        />
-                    </TouchableOpacity>
-                </View> 
-            </>
-        )
-    }
-
-    const Step3 = () => {
-        return (
-            <>
-                <Text style={styles.text}>3 - Informe uma senha:*</Text>
-                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <View style={styles.align}>   
-                    <TouchableOpacity onPress={handlePreview}>
-                        <Image style={styles.arrowLeft}
-                            source={require('../assets/arrowLeft.png')}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNext}>
-                        <Image style={styles.arrowRight}
-                            source={require('../assets/arrowRight.png')}
-                        />
-                    </TouchableOpacity>
-                </View> 
-            </>
-        )
-    }
-
-    const Step4 = () => {
-        return (
-            <>
-                <Text style={styles.text}>4 - Confirme sua senha:*</Text>
-                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <View style={styles.align}>   
-                    <TouchableOpacity onPress={handlePreview}>
-                        <Image style={styles.arrowLeft}
-                            source={require('../assets/arrowLeft.png')}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNext}>
-                        <Image style={styles.arrowRight}
-                            source={require('../assets/arrowRight.png')}
-                        />
-                    </TouchableOpacity>
-                </View> 
-            </>
-        )
-    }
-
- return (
+  return (
     <View style={styles.container}>
-        {active === 1 && (
-            <Step1 />
-        )}
-        {active === 2 && (
-            <Step2 />
-        )}
-        {active === 3 && (
-            <Step3 />
-        )}
-        {active === 4 && (
-            <Step4 />
-        )}
+        <StatusBar/>
+        <Stepper 
+            stepStyle={styles.step}
+            active={active}
+            buttonStyle={styles.navigation}
+            content={content}
+            onNext={() => setActive((p) => p + 1)}
+            onBack={() => setActive((p) => p - 1)}
+            onFinish={() => Alert.alert("Finish")}
+        />
     </View>
   );
 }
@@ -129,7 +68,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors('greenPrimary'),
+    },
+    element:{
         justifyContent: 'center',
+        marginTop: '70%'
     },
     text:{
         marginHorizontal: 30,
@@ -147,17 +89,13 @@ const styles = StyleSheet.create({
     align:{
         flexDirection: 'row',
     },
-    arrowRight1:{
-        marginTop: 15,
-        marginLeft: '80%',
+    step:{
+        backgroundColor: colors('greenLoading'),
+        marginTop: '1.5%',
+        justifyContent: 'flex-start', 
     },
-    arrowLeft:{
-        marginTop: 15,
+    navigation:{
         marginHorizontal: 30,
+        backgroundColor: colors('greenLoading'),
     },
-    arrowRight:{
-        marginTop: 15,
-        marginLeft: '68.3%',
-        marginHorizontal: 30,
-    }
 });
