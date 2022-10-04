@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, StyleSheet, } from "react-native";
 
 import colors from "../../global/color";
 import Header from "../../components/Home/header";
