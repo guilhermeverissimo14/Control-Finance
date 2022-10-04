@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import Stepper from "react-native-stepper-ui";
 import colors from '../global/color'
 import { useNavigation } from '@react-navigation/native';
@@ -110,13 +109,6 @@ export default function Cadastre() {
 
  return (
     <View style={styles.container}>
-        <Stepper
-            active={active}
-            content={content}
-            onNext={() => handleNext()}
-            onBack={() => handlePreview()}
-            onFinish={() => Alert.alert("Finish")}
-        />
         {active === 1 && (
             <Step1 />
         )}
@@ -151,7 +143,6 @@ const styles = StyleSheet.create({
         width: '80%',
         borderBottomColor: colors('white'),
         color: colors('white'),
-        
     },
     align:{
         flexDirection: 'row',
@@ -166,7 +157,7 @@ const styles = StyleSheet.create({
     },
     arrowRight:{
         marginTop: 15,
-        marginLeft: '72%',
+        marginLeft: '68.3%',
         marginHorizontal: 30,
     }
 });
