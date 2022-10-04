@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import Stepper from "react-native-stepper-ui";
 import colors from '../global/color'
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +8,20 @@ import { useNavigation } from '@react-navigation/native';
 export default function Cadastre() {
     const navigation = useNavigation(true);
     const [active, setActive] = useState(1);
+
+    const MyComponent = (props) => {
+        return (
+          <View>
+            <Text>{props.title}</Text>
+          </View>
+        );
+    };
+
+    const content = [
+        <MyComponent title="Nome" />,
+        <MyComponent title="Email" />,
+        <MyComponent title="Senha" />,
+    ];
 
     function handlePreview() {
         setActive(active - 1);
@@ -21,8 +36,8 @@ export default function Cadastre() {
             <>
                 <Text style={styles.text}>1 - Informe seu nome:*</Text>
                 <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <TouchableOpacity onPress={handleNext} style={styles.arrow}>
-                    <Image 
+                <TouchableOpacity onPress={handleNext}>
+                    <Image style={styles.arrowRight1}
                         source={require('../assets/arrowRight.png')}
                     />
                 </TouchableOpacity>
@@ -35,34 +50,73 @@ export default function Cadastre() {
             <>
                 <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
                 <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                <TouchableOpacity onPress={handlePreview} style={styles.arrowLeft}>
-                    <Image 
-                        source={require('../assets/arrowLeft.png')}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleNext} style={styles.arrowRight}>
-                    <Image 
-                        source={require('../assets/arrowRight.png')}
-                    />
-                </TouchableOpacity>
+                <View style={styles.align}>   
+                    <TouchableOpacity onPress={handlePreview}>
+                        <Image style={styles.arrowLeft}
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleNext}>
+                        <Image style={styles.arrowRight}
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View> 
             </>
         )
     }
 
     const Step3 = () => {
         return (
-            <View />
+            <>
+                <Text style={styles.text}>3 - Informe uma senha:*</Text>
+                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <View style={styles.align}>   
+                    <TouchableOpacity onPress={handlePreview}>
+                        <Image style={styles.arrowLeft}
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleNext}>
+                        <Image style={styles.arrowRight}
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View> 
+            </>
         )
     }
 
     const Step4 = () => {
         return (
-            <View />
+            <>
+                <Text style={styles.text}>4 - Confirme sua senha:*</Text>
+                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <View style={styles.align}>   
+                    <TouchableOpacity onPress={handlePreview}>
+                        <Image style={styles.arrowLeft}
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleNext}>
+                        <Image style={styles.arrowRight}
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View> 
+            </>
         )
     }
 
  return (
     <View style={styles.container}>
+        <Stepper
+            active={active}
+            content={content}
+            onNext={() => handleNext()}
+            onBack={() => handlePreview()}
+            onFinish={() => Alert.alert("Finish")}
+        />
         {active === 1 && (
             <Step1 />
         )}
@@ -99,8 +153,20 @@ const styles = StyleSheet.create({
         color: colors('white'),
         
     },
+    align:{
+        flexDirection: 'row',
+    },
+    arrowRight1:{
+        marginTop: 15,
+        marginLeft: '80%',
+    },
+    arrowLeft:{
+        marginTop: 15,
+        marginHorizontal: 30,
+    },
     arrowRight:{
         marginTop: 15,
-        marginLeft: '82%'
+        marginLeft: '72%',
+        marginHorizontal: 30,
     }
 });
