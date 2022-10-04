@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Input, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Input, TouchableOpacity,TextInput } from 'react-native';
 
 import colors from '../../global/color';
 import Navigation from '../../components/Home/navigation';
@@ -12,15 +12,17 @@ export default function Addi() {
             <View style={styles.menu}>
                 <View>
                     <Text> Descrição</Text>
-
+                    <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 </View>
 
                 <View>
                     <Text> Data</Text>
+                    <TextInput placeholder="Data" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 </View>
 
                 <View>
                     <Text> Valor</Text>
+                    <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 </View>
 
                 <View style={styles.button}>

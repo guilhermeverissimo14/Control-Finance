@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import Stepper from "react-native-stepper-ui";
 import colors from '../global/color'
 import { useNavigation } from '@react-navigation/native';
