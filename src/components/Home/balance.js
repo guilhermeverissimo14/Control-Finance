@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-web';
 import colors from '../../global/color';
 
 export default function Balance() {
     return (
-        <View style={StyleSheet.container}>
-
+        <View style={styles.container}>
             <View style={styles.principal}>
                 <View style={styles.item}>
                     <Text style={styles.text}>Capital:</Text>
@@ -56,9 +54,6 @@ export default function Balance() {
     );
 }
 const styles = StyleSheet.create({
-    container: {
-
-    },
     principal: {
         padding: 10,
         justifyContent: 'center',

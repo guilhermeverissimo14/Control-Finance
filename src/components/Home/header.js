@@ -18,7 +18,6 @@ export default function Header() {
 
                 />
                 <Text style={styles.User}>Olá Luana</Text>
-
             </View>
         </View>
 

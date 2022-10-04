@@ -17,7 +17,9 @@ const colors = (color) => {
     case 'black':
       return '#424242';
     case 'FundoHome':
-      return '#BDD6D2';  
+      return '#BDD6D2';
+    case 'FundoReport':
+      return '#14888B';
     default:
       return color;
   }
