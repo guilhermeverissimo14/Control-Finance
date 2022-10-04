@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
 
 import DatePicker from 'react-native-modern-datepicker';
 
@@ -8,8 +8,58 @@ import Navigation from '../../components/Home/navigation';
 import Header from '../../components/Add/header';
 
 
+
+
 export default function Addi() {
     const [selectedDate, setSelectedDate] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
+
+    function handleModal() {
+        setModalVisible(true);
+    }
+
+    const Date = () => {
+        return (
+            <View style={styles.centeredView}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+
+                >
+                    <View style={styles.centeredContet}>
+                        <View style={styles.modalView}>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={styles.textStyle}>Fechar</Text>
+                            </Pressable>
+                            <DatePicker
+                                onDateChange={(date) => { setSelectedDate(date); setModalVisible(false)}}
+                                options={{
+                                    backgroundColor: colors('white'),
+                                    textHeaderColor: colors('greenPrimary'),
+                                    textDefaultColor: '#F6E7C1',
+                                    selectedTextColor: '#fff',
+                                    mainColor: '#F4722B',
+                                    textSecondaryColor: '#D6C7A1',
+                                    borderColor: 'rgba(122, 146, 165, 0.1)',
+                                }}
+                                current="2020-07-13"
+                                selected="2020-07-23"
+                                mode="calendar"
+                                minuteInterval={30}
+                                style={{ borderRadius: 10 }}
+                            />
+
+                        </View>
+                    </View>
+                </Modal>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
             <Header />
@@ -22,28 +72,14 @@ export default function Addi() {
                 <View>
                     <Text> Data</Text>
 
-                    {/* <DatePicker
-                        options={{
-                            backgroundColor: '#090C08',
-                            textHeaderColor: '#FFA25B',
-                            textDefaultColor: '#F6E7C1',
-                            selectedTextColor: '#fff',
-                            mainColor: '#F4722B',
-                            textSecondaryColor: '#D6C7A1',
-                            borderColor: 'rgba(122, 146, 165, 0.1)',
-                        }}
-                        current="2020-07-13"
-                        selected="2020-07-23"
-                        mode="calendar"
-                        minuteInterval={30}
-                        style={{ borderRadius: 10 }}
-                    /> */}
+
                     <View style={styles.icon}>
-                        <TextInput placeholder="Data" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                        <TouchableOpacity>
+                        <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TouchableOpacity onPress={handleModal}>
                             <Image
                                 source={require('../../assets/CalendarBlank.png')}
                             />
+
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -61,6 +97,7 @@ export default function Addi() {
                     </TouchableOpacity>
                 </View>
             </View>
+            <Date />
             <Navigation />
         </View >
     );
@@ -95,8 +132,44 @@ const styles = StyleSheet.create({
         borderBottomColor: colors('white'),
         color: colors('white'),
     },
-    icon:{
+    icon: {
         flexDirection: 'row',
-        justifyContent: '',
+        justifyContent: 'space-between',
+        width: '80%',
+    },
+    centeredView: {
+        flex: 1,
+
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+    },
+    modalView: {
+        flex: 1,
+        justifyContent: "center",
+        // margin: 2,
+        // backgroundColor: "white",
+        borderRadius: 20,
+        // padding: 35,
+        alignItems: "center",
+        // shadowColor: "#000",
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 2
+        // },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 4,
+        // elevation: 5
+    },
+    centeredContet: {
+        padding: 30,
+        flex: 1,
+        justifyContent: "center"
+    },
+    button: {
+        padding: 10,
+    },
+    buttonClose: {
+        backgroundColor: colors('white'),
     },
 });
