@@ -63,20 +63,22 @@ export default function Addi() {
     return (
         <View style={styles.container}>
             <Header />
+            <View >
+
+            </View>
             <View style={styles.menu}>
-                <View>
-                    <Text> Descrição</Text>
+
+                <View style={styles.campos}>
+                    <Text style={styles.text}> Descrição</Text>
                     <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 </View>
 
-                <View>
-                    <Text> Data</Text>
-
-
+                <View style={styles.campos}>
+                    <Text style={styles.text}> Data</Text>
                     <View style={styles.icon}>
                         <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                         <TouchableOpacity onPress={handleModal}>
-                            <Image
+                            <Image style={styles.icon1}
                                 source={require('../../assets/CalendarBlank.png')}
                             />
 
@@ -84,8 +86,8 @@ export default function Addi() {
                     </View>
                 </View>
 
-                <View>
-                    <Text> Valor</Text>
+                <View style={styles.campos}>
+                    <Text style={styles.text}> Valor</Text>
                     <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 </View>
 
@@ -96,6 +98,7 @@ export default function Addi() {
                         </Text>
                     </TouchableOpacity>
                 </View>
+
             </View>
             <Date />
             <Navigation />
@@ -112,12 +115,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button1: {
-        backgroundColor: colors('greenLoading'),
+        backgroundColor: colors('buttonAdd'),
         alignItems: 'center',
         width: '80%',
-        height: '10%',
+        height: '23%',
         borderRadius: 30,
-        marginTop: 450,
+        marginTop: 80,
+        marginStart: '8%',
     },
 
     TextButton: {
@@ -133,13 +137,17 @@ const styles = StyleSheet.create({
         color: colors('white'),
     },
     icon: {
+        marginStart: 23,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
+        justifyContent: 'space-evenly',
+        width: '88%',
+    },
+    icon1: {
+        marginTop:24,
+        marginRight:24,
     },
     centeredView: {
         flex: 1,
-
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22,
@@ -171,5 +179,14 @@ const styles = StyleSheet.create({
     },
     buttonClose: {
         backgroundColor: colors('white'),
+    },
+    text: {
+        color: colors('white'),
+        fontSize: 22,
+        marginStart: 30,
+    },
+     campos: {
+        padding: 10,
+        marginTop: 20,
     },
 });

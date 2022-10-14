@@ -36,14 +36,16 @@ export default function Navigation() {
                     />
                 </TouchableOpacity>
             </View>
-            <View style={styles.report}>
-                <TouchableOpacity onPress={handleReport}>
+
+            <TouchableOpacity onPress={handleReport}>
+                <View style={styles.report}>
                     <Image
                         source={require('../../assets/Report.png')}
                         resizeMode="contain"
                     />
-                </TouchableOpacity>
-            </View>
+                </View>
+            </TouchableOpacity>
+
         </View>
     );
 }
