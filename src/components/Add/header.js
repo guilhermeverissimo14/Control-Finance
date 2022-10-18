@@ -2,16 +2,16 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../../global/color';
 
-export default function Header() {
+export default function Header({ onPressCapital, onPressDespesas, capital }) {
   return (
     <View style={styles.container}>
       <View style={styles.menu}>
-        <TouchableOpacity>
-          <Text style={styles.text1}> Capital</Text>
+        <TouchableOpacity onPress={onPressCapital}>
+          <Text style={capital === "true" ? styles.text1 : styles.text2}> Capital</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Text style={styles.text2}> Despesas</Text>
+        <TouchableOpacity onPress={onPressDespesas}>
+          <Text style={ capital === "true" ? styles.text2 : styles.text1}> Despesas</Text>
         </TouchableOpacity>
 
       </View>
@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 25,
+    color: 'black'
   },
 });

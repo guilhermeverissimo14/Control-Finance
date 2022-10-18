@@ -13,6 +13,7 @@ import Header from '../../components/Add/header';
 export default function Addi() {
     const [selectedDate, setSelectedDate] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const [capital, setCapital] = useState(true);
 
     function handleModal() {
         setModalVisible(true);
@@ -49,10 +50,10 @@ export default function Addi() {
                                     borderColor: 'rgba(122, 146, 165, 0.1)',
                                 }}
                                 current="2020-07-13"
-                                selected="2020-07-23"
+                                selected={selectedDate}
                                 mode="calendar"
                                 minuteInterval={30}
-                                style={{ borderRadius: 10 }}
+                                style={{ borderRadius: 10, borderTopRightRadius: 0, }}
 
                             />
                         </View>
@@ -63,46 +64,92 @@ export default function Addi() {
     }
 
     return (
-        <View style={styles.container}>
-            <Header />
+        capital ? (
+            <View style={styles.container}>
+                <Header onPressCapital={() => setCapital(true)} onPressDespesas={() => setCapital(false)} capital="true" />
 
-            <SafeAreaView style={styles.menu}>
+                <SafeAreaView style={styles.menu}>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Descrição</Text>
-                    <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                </View>
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Descrição</Text>
+                        <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Data</Text>
-                    <View style={styles.icon}>
-                        <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                        <TouchableOpacity onPress={handleModal}>
-                            <Image style={styles.icon1}
-                                source={require('../../assets/CalendarBlank.png')}
-                            />
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Data</Text>
+                        <View style={styles.icon}>
+                            <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                            <TouchableOpacity onPress={handleModal}>
+                                <Image style={styles.icon1}
+                                    source={require('../../assets/CalendarBlank.png')}
+                                />
 
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Valor</Text>
+                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.button}>
+                        <TouchableOpacity style={styles.button1}>
+                            <Text style={styles.TextButton}>
+                                Adicionar
+                            </Text>
                         </TouchableOpacity>
                     </View>
-                </View>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Valor</Text>
-                    <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                </View>
+                </SafeAreaView>
+                <Date />
+                <Navigation />
+            </View >
 
-                <View style={styles.button}>
-                    <TouchableOpacity style={styles.button1}>
-                        <Text style={styles.TextButton}>
-                            Adicionar
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+        //Tela de despesas
 
-            </SafeAreaView>
-            <Date />
-            <Navigation />
-        </View >
+        ) : (
+            <View style={styles.container}>
+                <Header onPressCapital={() => setCapital(true)} onPressDespesas={() => setCapital(false)} capital="false" />
+
+                <SafeAreaView style={styles.menu}>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Descrição</Text>
+                        <TextInput placeholder="Informe despesas..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Data</Text>
+                        <View style={styles.icon}>
+                            <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                            <TouchableOpacity onPress={handleModal}>
+                                <Image style={styles.icon1}
+                                    source={require('../../assets/CalendarBlank.png')}
+                                />
+
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Valor</Text>
+                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.button}>
+                        <TouchableOpacity style={styles.button1}>
+                            <Text style={styles.TextButton}>
+                                Adicionar
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </SafeAreaView>
+                <Date />
+                <Navigation />
+            </View >
+        )
     );
 }
 
@@ -180,14 +227,16 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     buttonClose: {
-        backgroundColor: '#95FEEC',
-        borderRadius: 10,
+        backgroundColor: '#fff',
+        borderRadius: 2,
         width: '20%',
         alignItems: 'center',
-        marginStart: 14,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
     },
-    inebutton:{
-        width:'100%',
+    linebutton: {
+        flexDirection: 'row',
+        width: '100%',
         justifyContent: 'flex-end',
     },
     text: {
