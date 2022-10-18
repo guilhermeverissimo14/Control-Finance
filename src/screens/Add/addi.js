@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable, SafeAreaView } from 'react-native';
 
 import DatePicker from 'react-native-modern-datepicker';
 
@@ -29,21 +29,23 @@ export default function Addi() {
                 >
                     <View style={styles.centeredContet}>
                         <View style={styles.modalView}>
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>Fechar</Text>
-                            </Pressable>
+                            <View style={[styles.linebutton]}>
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                >
+                                    <Text style={styles.textStyle}>X</Text>
+                                </Pressable>
+                            </View>
                             <DatePicker
-                                onDateChange={(date) => { setSelectedDate(date); setModalVisible(false)}}
+                                onDateChange={(date) => { setSelectedDate(date); setModalVisible(false) }}
                                 options={{
                                     backgroundColor: colors('white'),
                                     textHeaderColor: colors('greenPrimary'),
-                                    textDefaultColor: '#F6E7C1',
-                                    selectedTextColor: '#fff',
-                                    mainColor: '#F4722B',
-                                    textSecondaryColor: '#D6C7A1',
+                                    textDefaultColor: colors('greenPrimary'),
+                                    selectedTextColor: colors('greenPrimary'),
+                                    mainColor: '#6E9987',
+                                    textSecondaryColor: colors('greenPrimary'),
                                     borderColor: 'rgba(122, 146, 165, 0.1)',
                                 }}
                                 current="2020-07-13"
@@ -51,8 +53,8 @@ export default function Addi() {
                                 mode="calendar"
                                 minuteInterval={30}
                                 style={{ borderRadius: 10 }}
-                            />
 
+                            />
                         </View>
                     </View>
                 </Modal>
@@ -63,10 +65,8 @@ export default function Addi() {
     return (
         <View style={styles.container}>
             <Header />
-            <View >
 
-            </View>
-            <View style={styles.menu}>
+            <SafeAreaView style={styles.menu}>
 
                 <View style={styles.campos}>
                     <Text style={styles.text}> Descrição</Text>
@@ -99,7 +99,7 @@ export default function Addi() {
                     </TouchableOpacity>
                 </View>
 
-            </View>
+            </SafeAreaView>
             <Date />
             <Navigation />
         </View >
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors('FundoReport'),
         flex: 1,
     },
+
     button: {
         alignItems: 'center',
     },
@@ -143,8 +144,9 @@ const styles = StyleSheet.create({
         width: '88%',
     },
     icon1: {
-        marginTop:24,
-        marginRight:24,
+        marginTop: 24,
+        marginRight: 24,
+        tintColor: colors('white')
     },
     centeredView: {
         flex: 1,
@@ -178,15 +180,23 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     buttonClose: {
-        backgroundColor: colors('white'),
+        backgroundColor: '#95FEEC',
+        borderRadius: 10,
+        width: '20%',
+        alignItems: 'center',
+        marginStart: 14,
+    },
+    inebutton:{
+        width:'100%',
+        justifyContent: 'flex-end',
     },
     text: {
         color: colors('white'),
         fontSize: 22,
-        marginStart: 30,
     },
-     campos: {
+    campos: {
         padding: 10,
         marginTop: 20,
     },
+
 });
