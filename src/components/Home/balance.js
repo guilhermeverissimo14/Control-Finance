@@ -2,7 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../global/color';
 
+import { useNavigation } from '@react-navigation/native';
+
+
 export default function Balance() {
+    const navigation = useNavigation();
+
+    function handleReport() {
+        navigation.navigate("report");
+    }
     return (
         <View style={styles.container}>
             <View style={styles.principal}>
@@ -12,7 +20,7 @@ export default function Balance() {
 
                         <Text style={styles.simbolo1}>R$</Text>
                         <Text style={styles.valor}> 1800,00</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon}
                                 source={require('../../assets/Edit.png')}
                                 resizeMode="contain"
@@ -29,7 +37,7 @@ export default function Balance() {
 
                         <Text style={styles.simbolo}> R$</Text>
                         <Text style={styles.valor1}> 1800,00 </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon1}
                                 source={require('../../assets/Edit.png')}
                                 resizeMode="contain"
