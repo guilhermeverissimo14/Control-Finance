@@ -1,40 +1,48 @@
 import React, {useState} from 'react';
-import {StatusBar} from 'expo-status-bar';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import Input from '../components/Input';
 import colors from '../global/color'
-import { useNavigation } from '@react-navigation/native';
 
 export default function Cadastre() {
-    const [active, setActive] = useState(1);
+    const [value, setValue] = useState(25);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setpassword] = useState('');
+    const [confirmPassword, setconfirmPassword] = useState('');
 
-    function handlePreview() {
-        setActive(active - 1);
+    const previous = () => {
+        if (value > 0)
+        setValue(Number(value) - 25);
     }
 
-    function handleNext() {
-        setActive(active + 1);
+    const next = () => {
+        if (value < 100)
+        setValue(Number(value) + 25);
     }
 
-    const Step1 = () => {
+    console.log(name);
+    console.log(email);
+
+    const Step1 = ({ name, setName }) => {
         return (
             <View style={styles.element}>
                 <View style={styles.barContainer}>
-                    <View style={styles.progress}/>
-                    <View style={styles.progressCheck}/>
+                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6 ,width: value.toString() + '%' }} />
                 </View>
-                <View style={styles.step}>
-                    <Text style={styles.text}>1 - Informe seu nome:*</Text>
-                    <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                    <View style={styles.align}>
-                        <View/>
-                        <TouchableOpacity onPress={handleNext} style={styles.arrowRight1}>
-                            <Image 
-                                source={require('../assets/arrowRight.png')}
-                            />
-                        </TouchableOpacity>
+                   <View style={styles.step}>
+                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                            <Text style={styles.text}>1 - Informe seu nome:*</Text>
+                            <TextInput placeholder="Responda aqui..." onChangeText={setName} value={name} keyboardType="email-address" autoCorrect={false} placeholderTextColor={colors('white')} style={styles.input} />
+                            <View style={styles.align}>
+                                <View/>
+                                <TouchableOpacity onPress={next} style={styles.arrowRight1}>
+                                    <Image 
+                                        source={require('../assets/arrowRight.png')}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </KeyboardAvoidingView>
                     </View>
-                </View>
-                
             </View>
         )
     }
@@ -43,19 +51,18 @@ export default function Cadastre() {
         return (
             <View style={styles.element}>
                 <View style={styles.barContainer}>
-                    <View style={styles.progress}/>
-                    <View style={styles.progressCheck}/>
+                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
                 </View>
                 <View style={styles.step}>
                     <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
-                    <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    <TextInput placeholder="Responda aqui..." onChangeText={setEmail} value={email} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     <View style={styles.align}>
-                        <TouchableOpacity onPress={handlePreview} style={styles.arrowLeft}>
+                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
                             <Image 
                                 source={require('../assets/arrowLeft.png')}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={handleNext} style={styles.arrowRight}>
+                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
                             <Image 
                                 source={require('../assets/arrowRight.png')}
                             />
@@ -70,18 +77,18 @@ export default function Cadastre() {
         return (
             <View style={styles.element}>
                 <View style={styles.barContainer}>
-                    <View style={styles.progress}/>
+                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
                 </View>
                 <View style={styles.step}>
                     <Text style={styles.text}>3 - Informe uma senha:*</Text>
                     <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     <View style={styles.align}>
-                        <TouchableOpacity onPress={handlePreview} style={styles.arrowLeft}>
+                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
                             <Image 
                                 source={require('../assets/arrowLeft.png')}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={handleNext} style={styles.arrowRight}>
+                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
                             <Image 
                                 source={require('../assets/arrowRight.png')}
                             />
@@ -96,18 +103,18 @@ export default function Cadastre() {
         return (
             <View style={styles.element}>
                 <View style={styles.barContainer}>
-                    <View style={styles.progress}/>
+                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
                 </View>
                 <View style={styles.step}>
                     <Text style={styles.text}>4 - Confirme sua senha:*</Text>
                     <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     <View style={styles.align}>
-                        <TouchableOpacity onPress={handlePreview} style={styles.arrowLeft}>
+                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
                             <Image 
                                 source={require('../assets/arrowLeft.png')}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={handleNext} style={styles.arrowRight}>
+                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
                             <Image 
                                 source={require('../assets/arrowRight.png')}
                             />
@@ -121,16 +128,16 @@ export default function Cadastre() {
   return (
     <>
         <View style={styles.container}>
-            {active === 1 && (
-                <Step1 />
+            {value === 25 && (
+                <Step1 name={name} setName={setName}/>
             )}
-            {active === 2 && (
+            {value === 50 && (
                 <Step2 />
             )}
-            {active === 3 && (
+            {value === 75 && (
                 <Step3 />
             )}
-            {active === 4 && (
+            {value === 100 && (
                 <Step4 />
             )}
         </View>
@@ -143,27 +150,22 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors('greenPrimary'),
     },
-    barContainer:{
-        flex: 0.10,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    progress:{
-        backgroundColor: colors('white'),
-        width: '90%',
-        height: '14%',
-        borderRadius: 20,
-    },
-    progressCheck:{
-        backgroundColor: colors('greenLoading'),
-    },
     element:{
         flex: 1,
+    },
+    barContainer:{
+        marginTop: '8%',
+        marginLeft: '2%',
+        backgroundColor: colors('white'),
+        width: '95%',
+        height: '2%',
+        borderRadius: 6,
+        borderColor: colors('black'),
+        flexDirection: "row",
     },
     step:{
         flex: 0.8,
         justifyContent: 'center',
-
     },
     text:{
         marginHorizontal: 30,

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
@@ -18,6 +18,8 @@ export default function SingIn() {
     function handlePassword() {
         navigation.navigate("password");
     }
+
+    console.log(email);
     return (
         <View style={styles.container}>
             <Image 
