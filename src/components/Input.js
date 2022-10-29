@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import colors from '../global/color';
 
-export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
+export default function Input({ placeholder, security = false, onChangeText, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
     const [hidePass, setHidePass] = useState(true);
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -32,7 +32,6 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     autoCorrect={autoCorrect}
                     returnKeyType={returnKeyType}
                     style={styles.input}
-                
                 />
                 
 

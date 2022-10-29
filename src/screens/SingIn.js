@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
@@ -18,18 +18,20 @@ export default function SingIn() {
     function handlePassword() {
         navigation.navigate("password");
     }
+
+    console.log(email);
     return (
         <View style={styles.container}>
-            <Image
+            <Image 
                 source={require('../assets/UserCircle.png')}
                 resizeMode="contain"
                 style={{ width: '50%', height: '30%' }}
             />
-            
+
             <View style={styles.form}>
-            
-                <Input  placeholder="E-mail" keyboardType="email-address" icon="user"/>
-                <Input placeholder="Senha" keyboardType="password" security  icon="pass"/>
+
+                <Input placeholder="E-mail" keyboardType="email-address" icon="user" />
+                <Input placeholder="Senha" keyboardType="password" security icon="pass" />
 
                 <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
                     <Text style={styles.textForgot}>
@@ -37,7 +39,7 @@ export default function SingIn() {
                     </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={handleSigIn } >
+                <TouchableOpacity style={styles.button} onPress={handleSigIn} >
                     <Text style={styles.textButton}>
                         Acessar
                     </Text>
@@ -60,10 +62,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     form: {
-        flex: 0.5,
         width: "75%",
         justifyContent: 'center',
-        
+
     },
     button: {
 
@@ -78,18 +79,18 @@ const styles = StyleSheet.create({
         color: '#142F30',
         textTransform: 'uppercase',
         textAlign: 'center'
-        
+
     },
     forgot: {
         marginVertical: 5,
-        
+
 
     },
     textForgot: {
         color: "white",
         fontSize: 18,
     },
-    resgister:{
+    resgister: {
         alignItems: 'center',
         top: 15,
     }

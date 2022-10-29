@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable, SafeAreaView } from 'react-native';
 
 import DatePicker from 'react-native-modern-datepicker';
 
@@ -13,6 +13,7 @@ import Header from '../../components/Add/header';
 export default function Addi() {
     const [selectedDate, setSelectedDate] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const [capital, setCapital] = useState(true);
 
     function handleModal() {
         setModalVisible(true);
@@ -29,30 +30,32 @@ export default function Addi() {
                 >
                     <View style={styles.centeredContet}>
                         <View style={styles.modalView}>
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>Fechar</Text>
-                            </Pressable>
+                            <View style={[styles.linebutton]}>
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => setModalVisible(!modalVisible)}
+                                >
+                                    <Text style={styles.textStyle}>X</Text>
+                                </Pressable>
+                            </View>
                             <DatePicker
-                                onDateChange={(date) => { setSelectedDate(date); setModalVisible(false)}}
+                                onDateChange={(date) => { setSelectedDate(date); setModalVisible(false) }}
                                 options={{
                                     backgroundColor: colors('white'),
                                     textHeaderColor: colors('greenPrimary'),
-                                    textDefaultColor: '#F6E7C1',
-                                    selectedTextColor: '#fff',
-                                    mainColor: '#F4722B',
-                                    textSecondaryColor: '#D6C7A1',
+                                    textDefaultColor: colors('greenPrimary'),
+                                    selectedTextColor: colors('greenPrimary'),
+                                    mainColor: '#6E9987',
+                                    textSecondaryColor: colors('greenPrimary'),
                                     borderColor: 'rgba(122, 146, 165, 0.1)',
                                 }}
                                 current="2020-07-13"
-                                selected="2020-07-23"
+                                selected={selectedDate}
                                 mode="calendar"
                                 minuteInterval={30}
-                                style={{ borderRadius: 10 }}
-                            />
+                                style={{ borderRadius: 10, borderTopRightRadius: 0, }}
 
+                            />
                         </View>
                     </View>
                 </Modal>
@@ -61,48 +64,92 @@ export default function Addi() {
     }
 
     return (
-        <View style={styles.container}>
-            <Header />
-            <View >
+        capital ? (
+            <View style={styles.container}>
+                <Header onPressCapital={() => setCapital(true)} onPressDespesas={() => setCapital(false)} capital="true" />
 
-            </View>
-            <View style={styles.menu}>
+                <SafeAreaView style={styles.menu}>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Descrição</Text>
-                    <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                </View>
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Descrição</Text>
+                        <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Data</Text>
-                    <View style={styles.icon}>
-                        <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                        <TouchableOpacity onPress={handleModal}>
-                            <Image style={styles.icon1}
-                                source={require('../../assets/CalendarBlank.png')}
-                            />
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Data</Text>
+                        <View style={styles.icon}>
+                            <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                            <TouchableOpacity onPress={handleModal}>
+                                <Image style={styles.icon1}
+                                    source={require('../../assets/CalendarBlank.png')}
+                                />
 
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Valor</Text>
+                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.button}>
+                        <TouchableOpacity style={styles.button1}>
+                            <Text style={styles.TextButton}>
+                                Adicionar
+                            </Text>
                         </TouchableOpacity>
                     </View>
-                </View>
 
-                <View style={styles.campos}>
-                    <Text style={styles.text}> Valor</Text>
-                    <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                </View>
+                </SafeAreaView>
+                <Date />
+                <Navigation />
+            </View >
 
-                <View style={styles.button}>
-                    <TouchableOpacity style={styles.button1}>
-                        <Text style={styles.TextButton}>
-                            Adicionar
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+        //Tela de despesas
 
-            </View>
-            <Date />
-            <Navigation />
-        </View >
+        ) : (
+            <View style={styles.container}>
+                <Header onPressCapital={() => setCapital(true)} onPressDespesas={() => setCapital(false)} capital="false" />
+
+                <SafeAreaView style={styles.menu}>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Descrição</Text>
+                        <TextInput placeholder="Informe despesas..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Data</Text>
+                        <View style={styles.icon}>
+                            <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                            <TouchableOpacity onPress={handleModal}>
+                                <Image style={styles.icon1}
+                                    source={require('../../assets/CalendarBlank.png')}
+                                />
+
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.campos}>
+                        <Text style={styles.text}> Valor</Text>
+                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                    </View>
+
+                    <View style={styles.button}>
+                        <TouchableOpacity style={styles.button1}>
+                            <Text style={styles.TextButton}>
+                                Adicionar
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </SafeAreaView>
+                <Date />
+                <Navigation />
+            </View >
+        )
     );
 }
 
@@ -111,6 +158,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors('FundoReport'),
         flex: 1,
     },
+
     button: {
         alignItems: 'center',
     },
@@ -143,8 +191,9 @@ const styles = StyleSheet.create({
         width: '88%',
     },
     icon1: {
-        marginTop:24,
-        marginRight:24,
+        marginTop: 24,
+        marginRight: 24,
+        tintColor: colors('white')
     },
     centeredView: {
         flex: 1,
@@ -178,15 +227,25 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     buttonClose: {
-        backgroundColor: colors('white'),
+        backgroundColor: '#fff',
+        borderRadius: 2,
+        width: '20%',
+        alignItems: 'center',
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+    },
+    linebutton: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'flex-end',
     },
     text: {
         color: colors('white'),
         fontSize: 22,
-        marginStart: 30,
     },
-     campos: {
+    campos: {
         padding: 10,
         marginTop: 20,
     },
+
 });
