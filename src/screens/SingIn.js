@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 export default function SingIn() {
 
     const navigation = useNavigation();
-    const [user, setUser] = useState('');
     function handleSigIn() {
         navigation.navigate("home");
     }
@@ -18,8 +17,7 @@ export default function SingIn() {
     function handlePassword() {
         navigation.navigate("password");
     }
-    console.log(user);
-    
+   
     //função para não voltar no botão do celular
     // useEffect(() => {
     //     BackHandler.addEventListener('hardwareBackPress', () => {
@@ -36,8 +34,8 @@ export default function SingIn() {
 
             <View style={styles.form}>
 
-                <Input placeholder="E-mail" onChangeText={setUser} value={user} keyboardType="email-address" icon="user" />
-                <Input placeholder="Senha" keyboardType="password" security icon="pass" />
+                <Input placeholder="E-mail"  keyboardType="email-address" icon="user" />
+                <Input placeholder="Senha"  keyboardType="password" security icon="pass" />
 
                 <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
                     <Text style={styles.textForgot}>

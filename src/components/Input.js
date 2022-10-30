@@ -6,6 +6,8 @@ import colors from '../global/color';
 
 export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
     const [hidePass, setHidePass] = useState(true);
+    const [passUser, setPassUser] = useState('');
+    console.log(passUser);
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <View style={styles.inputArea}>
@@ -32,6 +34,8 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     autoCorrect={autoCorrect}
                     returnKeyType={returnKeyType}
                     style={styles.input}
+                    onChangeText={setPassUser}
+                    value={passUser}
                 />
             </View>
 

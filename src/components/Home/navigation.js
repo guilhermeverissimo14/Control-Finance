@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import colors from '../../global/color';
 import { useNavigation } from "@react-navigation/native";
