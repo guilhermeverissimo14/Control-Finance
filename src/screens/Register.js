@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 import Input from '../components/Input';
 import colors from '../global/color'
@@ -12,124 +12,125 @@ export default function Cadastre() {
 
     const previous = () => {
         if (value > 0)
-        setValue(Number(value) - 25);
+            setValue(Number(value) - 25);
     }
 
     const next = () => {
         if (value < 100)
-        setValue(Number(value) + 25);
+            setValue(Number(value) + 25);
     }
 
-    console.log(name);
-    console.log(email);
 
-    const Step1 = ({ name, setName }) => {
-        return (
-            <View style={styles.element}>
-                <View style={styles.barContainer}>
-                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6 ,width: value.toString() + '%' }} />
-                </View>
-                   <View style={styles.step}>
-                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-                            <Text style={styles.text}>1 - Informe seu nome:*</Text>
-                            <TextInput placeholder="Responda aqui..." onChangeText={setName} value={name} keyboardType="email-address" autoCorrect={false} placeholderTextColor={colors('white')} style={styles.input} />
-                            <View style={styles.align}>
-                                <View/>
-                                <TouchableOpacity onPress={next} style={styles.arrowRight1}>
-                                    <Image 
-                                        source={require('../assets/arrowRight.png')}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                        </KeyboardAvoidingView>
-                    </View>
+console.log(name);
+console.log(email);
+
+const Step1 = ({ name, setName }) => {
+    return (
+        <View style={styles.element}>
+            <View style={styles.barContainer}>
+                <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
-        )
-    }
-    
-    const Step2 = () => {
-        return (
-            <View style={styles.element}>
-                <View style={styles.barContainer}>
-                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
-                </View>
-                <View style={styles.step}>
-                    <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
-                    <TextInput placeholder="Responda aqui..." onChangeText={setEmail} value={email} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+            <View style={styles.step}>
+                <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                    <Text style={styles.text}>1 - Informe seu nome:*</Text>
+                    <TextInput placeholder="Responda aqui..." onChangeText={setName} value={name} keyboardType="email-address" autoCorrect={false} placeholderTextColor={colors('white')} style={styles.input} />
                     <View style={styles.align}>
-                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
-                            <Image 
-                                source={require('../assets/arrowLeft.png')}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
-                            <Image 
+                        <View />
+                        <TouchableOpacity onPress={next} style={styles.arrowRight1}>
+                            <Image
                                 source={require('../assets/arrowRight.png')}
                             />
                         </TouchableOpacity>
                     </View>
-                </View>
+                </KeyboardAvoidingView>
             </View>
-        )
-    }
-    
-    const Step3 = () => {
-        return (
-            <View style={styles.element}>
-                <View style={styles.barContainer}>
-                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
-                </View>
-                <View style={styles.step}>
-                    <Text style={styles.text}>3 - Informe uma senha:*</Text>
-                    <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                    <View style={styles.align}>
-                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
-                            <Image 
-                                source={require('../assets/arrowLeft.png')}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
-                            <Image 
-                                source={require('../assets/arrowRight.png')}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-        )
-    }
-    
-    const Step4 = () => {
-        return (
-            <View style={styles.element}>
-                <View style={styles.barContainer}>
-                    <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
-                </View>
-                <View style={styles.step}>
-                    <Text style={styles.text}>4 - Confirme sua senha:*</Text>
-                    <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
-                    <View style={styles.align}>
-                        <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
-                            <Image 
-                                source={require('../assets/arrowLeft.png')}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
-                            <Image 
-                                source={require('../assets/arrowRight.png')}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-        )
-    }
+        </View>
+    )
+}
 
-  return (
+const Step2 = () => {
+    return (
+        <View style={styles.element}>
+            <View style={styles.barContainer}>
+                <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
+            </View>
+            <View style={styles.step}>
+                <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
+                <TextInput placeholder="Responda aqui..." onChangeText={setEmail} value={email} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <View style={styles.align}>
+                    <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
+                        <Image
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={next} style={styles.arrowRight}>
+                        <Image
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+const Step3 = () => {
+    return (
+        <View style={styles.element}>
+            <View style={styles.barContainer}>
+                <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
+            </View>
+            <View style={styles.step}>
+                <Text style={styles.text}>3 - Informe uma senha:*</Text>
+                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <View style={styles.align}>
+                    <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
+                        <Image
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={next} style={styles.arrowRight}>
+                        <Image
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+const Step4 = () => {
+    return (
+        <View style={styles.element}>
+            <View style={styles.barContainer}>
+                <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
+            </View>
+            <View style={styles.step}>
+                <Text style={styles.text}>4 - Confirme sua senha:*</Text>
+                <TextInput placeholder="Responda aqui..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <View style={styles.align}>
+                    <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
+                        <Image
+                            source={require('../assets/arrowLeft.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={next} style={styles.arrowRight}>
+                        <Image
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+return (
     <>
         <View style={styles.container}>
             {value === 25 && (
-                <Step1 name={name} setName={setName}/>
+                <Step1 name={name} setName={setName} />
             )}
             {value === 50 && (
                 <Step2 />
@@ -141,8 +142,8 @@ export default function Cadastre() {
                 <Step4 />
             )}
         </View>
-    </>  
-    );
+    </>
+);
 }
 
 const styles = StyleSheet.create({
@@ -150,10 +151,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors('greenPrimary'),
     },
-    element:{
+    element: {
         flex: 1,
     },
-    barContainer:{
+    barContainer: {
         marginTop: '8%',
         marginLeft: '2%',
         backgroundColor: colors('white'),
@@ -163,37 +164,37 @@ const styles = StyleSheet.create({
         borderColor: colors('black'),
         flexDirection: "row",
     },
-    step:{
+    step: {
         flex: 0.8,
         justifyContent: 'center',
     },
-    text:{
+    text: {
         marginHorizontal: 30,
         color: colors('white'),
         fontSize: 18,
     },
-    input:{
-        marginTop:15,
+    input: {
+        marginTop: 15,
         marginHorizontal: 30,
         borderBottomWidth: 1,
         width: '80%',
         borderBottomColor: colors('white'),
         color: colors('white'),
     },
-    align:{
+    align: {
         width: '80%',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    arrowRight1:{
+    arrowRight1: {
         marginTop: 15,
         marginLeft: '100%',
     },
-    arrowLeft:{
+    arrowLeft: {
         marginTop: 15,
         marginHorizontal: 30,
     },
-    arrowRight:{
+    arrowRight: {
         marginTop: 15,
         marginLeft: '71%',
         marginHorizontal: 30,

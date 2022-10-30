@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import colors from '../global/color';
 
-export default function Input({ placeholder, security = false, onChangeText, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
+export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
     const [hidePass, setHidePass] = useState(true);
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -17,13 +17,13 @@ export default function Input({ placeholder, security = false, onChangeText, key
                     />
                 )}
                 {icon === "pass" && (
-                    <Image 
+                    <Image
                         source={require('../assets/password.png')}
                         resizeMode="contain"
                     //style={{ width: '100%', height: '100%' }}
                     />
                 )}
-                
+
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={colors("black")}
@@ -33,8 +33,6 @@ export default function Input({ placeholder, security = false, onChangeText, key
                     returnKeyType={returnKeyType}
                     style={styles.input}
                 />
-                
-
             </View>
 
 

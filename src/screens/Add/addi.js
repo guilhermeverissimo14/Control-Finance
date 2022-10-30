@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
+
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import DatePicker from 'react-native-modern-datepicker';
 
@@ -7,11 +9,32 @@ import colors from '../../global/color';
 import Navigation from '../../components/Home/navigation';
 import Header from '../../components/Add/header';
 
+import { useNavigation } from '@react-navigation/native';
 
 
 
 export default function Addi() {
+    //naviation
+    const navigation = useNavigation();
+
+    function handleReport() {
+        navigation.navigate("report");
+    }
+    function handleSigIn() {
+        navigation.navigate("home");
+    }
+    function handleAdd() {
+        navigation.navigate("add");
+    }
+
+    const [description, setDescrition] = useState('');
+    console.log(description);
+
+    const [val, setValue] = useState();
+    console.log(val);
+
     const [selectedDate, setSelectedDate] = useState('');
+    console.log(selectedDate);
     const [modalVisible, setModalVisible] = useState(false);
     const [capital, setCapital] = useState(true);
 
@@ -72,7 +95,7 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Descrição</Text>
-                        <TextInput placeholder="Informe a descrição..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="Informe a descrição..." onChangeText={setDescrition} value={description} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.campos}>
@@ -90,7 +113,7 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
@@ -100,13 +123,42 @@ export default function Addi() {
                             </Text>
                         </TouchableOpacity>
                     </View>
+                    <Date />
 
+                    {/* Tela de naviation */}
+                    <View style={styles.navigation}>
+                        <View style={styles.home}>
+                            <TouchableOpacity onPress={handleSigIn}>
+                                <Image
+                                    source={require('../../assets/Home.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.plus}>
+                            <TouchableOpacity onPress={handleAdd}>
+                                <Image
+                                    source={require('../../assets/Plus.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <TouchableOpacity onPress={handleReport}>
+                            <View style={styles.report}>
+                                <Image
+                                    source={require('../../assets/Report.png')}
+                                    resizeMode="contain"
+                                />
+                            </View>
+                        </TouchableOpacity>
+
+                    </View>
                 </SafeAreaView>
-                <Date />
-                <Navigation />
             </View >
 
-        //Tela de despesas
+            //Tela de despesas
 
         ) : (
             <View style={styles.container}>
@@ -116,13 +168,13 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Descrição</Text>
-                        <TextInput placeholder="Informe despesas..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput onChangeText={setDescrition} value={description} placeholder="Informe despesas..." placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Data</Text>
                         <View style={styles.icon}>
-                            <TextInput placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                            <TextInput onChangeText={setSelectedDate} placeholder="Data" value={selectedDate} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                             <TouchableOpacity onPress={handleModal}>
                                 <Image style={styles.icon1}
                                     source={require('../../assets/CalendarBlank.png')}
@@ -134,7 +186,7 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput onChangeText={setValue} value={val} placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
@@ -145,9 +197,39 @@ export default function Addi() {
                         </TouchableOpacity>
                     </View>
 
-                </SafeAreaView>
                 <Date />
-                <Navigation />
+                
+                {/* Tela de naviation */}
+                <View style={styles.navigation}>
+                        <View style={styles.home}>
+                            <TouchableOpacity onPress={handleSigIn}>
+                                <Image
+                                    source={require('../../assets/Home.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.plus}>
+                            <TouchableOpacity onPress={handleAdd}>
+                                <Image
+                                    source={require('../../assets/Plus.png')}
+                                    resizeMode="contain"
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <TouchableOpacity onPress={handleReport}>
+                            <View style={styles.report}>
+                                <Image
+                                    source={require('../../assets/Report.png')}
+                                    resizeMode="contain"
+                                />
+                            </View>
+                        </TouchableOpacity>
+
+                    </View>
+                </SafeAreaView>
             </View >
         )
     );
@@ -248,4 +330,31 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 
+    //navigation
+    navigation: {
+        padding: 20,
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: colors('greenSecondary'),
+        bottom: 0,
+        position: 'absolute',
+        width: '100%', height: '18%',
+    },
+    home: {
+        paddingStart: 10,
+    },
+    plus: {
+        height: 50,
+        width: '35%',
+        backgroundColor: colors('greenLoading'),
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    report: {
+        paddingStart: 10,
+    },
 });

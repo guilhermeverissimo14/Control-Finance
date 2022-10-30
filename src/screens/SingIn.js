@@ -1,14 +1,14 @@
 
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, useEffect } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
 
-
 export default function SingIn() {
-    const navigation = useNavigation();
 
+    const navigation = useNavigation();
+    const [user, setUser] = useState('');
     function handleSigIn() {
         navigation.navigate("home");
     }
@@ -18,19 +18,25 @@ export default function SingIn() {
     function handlePassword() {
         navigation.navigate("password");
     }
-
-    console.log(email);
+    console.log(user);
+    
+    //função para não voltar no botão do celular
+    // useEffect(() => {
+    //     BackHandler.addEventListener('hardwareBackPress', () => {
+    //         return true;
+    //     })
+    // }, []);
     return (
         <View style={styles.container}>
-            <Image 
+            <Image
                 source={require('../assets/UserCircle.png')}
                 resizeMode="contain"
-                style={{ width: '50%', height: '30%' }}
+                style={{ width: '70%', height: '30%' }}
             />
 
             <View style={styles.form}>
 
-                <Input placeholder="E-mail" keyboardType="email-address" icon="user" />
+                <Input placeholder="E-mail" onChangeText={setUser} value={user} keyboardType="email-address" icon="user" />
                 <Input placeholder="Senha" keyboardType="password" security icon="pass" />
 
                 <TouchableOpacity style={styles.forgot} onPress={handlePassword}>

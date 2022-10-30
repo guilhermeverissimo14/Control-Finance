@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import colors from '../../global/color';
 import { useNavigation } from "@react-navigation/native";
@@ -17,36 +18,36 @@ export default function Navigation() {
         navigation.navigate("add");
     }
 
-    return (
-        <View style={styles.navigation}>
-            <View style={styles.home}>
-                <TouchableOpacity onPress={handleSigIn}>
-                    <Image
-                        source={require('../../assets/Home.png')}
-                        resizeMode="contain"
-                    />
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.plus}>
-                <TouchableOpacity onPress={handleAdd}>
-                    <Image
-                        source={require('../../assets/Plus.png')}
-                        resizeMode="contain"
-                    />
-                </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity onPress={handleReport}>
-                <View style={styles.report}>
-                    <Image
-                        source={require('../../assets/Report.png')}
-                        resizeMode="contain"
-                    />
+    return (   
+            <View style={styles.navigation}>
+                <View style={styles.home}>
+                    <TouchableOpacity onPress={handleSigIn}>
+                        <Image
+                            source={require('../../assets/Home.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
 
-        </View>
+                <View style={styles.plus}>
+                    <TouchableOpacity onPress={handleAdd}>
+                        <Image
+                            source={require('../../assets/Plus.png')}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity onPress={handleReport}>
+                    <View style={styles.report}>
+                        <Image
+                            source={require('../../assets/Report.png')}
+                            resizeMode="contain"
+                        />
+                    </View>
+                </TouchableOpacity>
+
+            </View>
     );
 }
 const styles = StyleSheet.create({
