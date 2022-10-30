@@ -125,7 +125,7 @@ export default function Addi() {
                     </View>
                     <Date />
 
-                    {/* Tela de naviation */}
+                    {/* Tela de navigation */}
                     <View style={styles.navigation}>
                         <View style={styles.home}>
                             <TouchableOpacity onPress={handleSigIn}>

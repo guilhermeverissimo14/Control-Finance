@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 import colors from '../global/color';
 
