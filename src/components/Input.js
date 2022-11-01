@@ -4,7 +4,7 @@ import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform } fr
 import colors from '../global/color';
 
 export default function Input({ value, onChange, placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
-    
+
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <View style={styles.inputArea}>
