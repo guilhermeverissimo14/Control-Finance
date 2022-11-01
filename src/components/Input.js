@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity, } from 'react-native';
 
 import colors from '../global/color';
@@ -35,8 +35,6 @@ export default function Input({ value, onChange, placeholder, security = false, 
                     value={value}
                 />
             </View>
-
-
         </KeyboardAvoidingView>
     );
 }
