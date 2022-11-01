@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Image, StyleSheet} from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import colors from '../../global/color';
 import Lottie from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function loading() {
+export default function Loading() {
     const naviation = useNavigation();
 
     return (
@@ -20,9 +20,9 @@ export default function loading() {
                 loop={false}
                 onAnimationFinish={() => naviation.navigate('signin')}
                 speed={0.5}
-                
+
             />
-            
+
         </View>
 
     )

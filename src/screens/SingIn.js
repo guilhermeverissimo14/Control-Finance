@@ -5,20 +5,22 @@ import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SingIn() {
+    const [email, setEmail] = useState('');
     const [passUser, setPassUser] = useState('');
 
     const navigation = useNavigation();
+
     function handleSigIn() {
         navigation.navigate("home");
     }
+
     function handleRegister() {
         navigation.navigate("register");
     }
+
     function handlePassword() {
         navigation.navigate("password");
     }
-
-    console.log({ passUser })
 
     //função para não voltar no botão do celular
     useEffect(() => {
@@ -37,7 +39,7 @@ export default function SingIn() {
 
             <View style={styles.form}>
 
-                <Input placeholder="E-mail" keyboardType="email-address" icon="user" />
+                <Input placeholder="E-mail" keyboardType="email-address" value={email} onChange={setEmail} icon="user" />
                 <Input placeholder="Senha" keyboardType="password" security icon="pass" value={passUser} onChange={setPassUser} />
 
                 <TouchableOpacity style={styles.forgot} onPress={handlePassword}>

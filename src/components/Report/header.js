@@ -1,29 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar } from 'react-native';
+import { months, years } from '../../utils/functions';
 
 import colors from '../../global/color';
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 3 : 40; //observação: depois tem que testar em iphone que pode ser que o reader fique muito grande com 40.
 
 export default function Report() {
+    const date = new Date();
+    const [currentYear, setCurrentYear] = useState(date.getFullYear());
+    const [currentMonth, setCurrentMonth] = useState(date.getMonth() + 1);
+
+    const backMonth = () => {
+        if (currentMonth === 1) {
+            setCurrentMonth(12);
+            setCurrentYear(currentYear - 1);
+        } else {
+            setCurrentMonth(currentMonth - 1);
+        }
+    }
+
+    const nextMonth = () => {
+        if (currentMonth === 12) {
+            setCurrentMonth(1);
+            setCurrentYear(currentYear + 1);
+        } else {
+            setCurrentMonth(currentMonth + 1);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.title}>
                 <Text style={styles.text}>Relatório Mensal </Text>
             </View>
             <View style={styles.itens}>
-                <TouchableOpacity style={styles.iconLeft}>
+                <TouchableOpacity style={styles.iconLeft} onPress={backMonth} >
                     <Image
                         source={require('../../assets/arrowLeft.png')}
                     />
-
                 </TouchableOpacity>
 
                 <View style={styles.date}>
-                    <Text style={styles.mes} > Setembro</Text>
+                    <Text style={styles.mes}>{months(currentMonth)} / {years(currentYear)}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.iconRight}>
+                <TouchableOpacity style={styles.iconRight} onPress={nextMonth}>
                     <Image
                         source={require('../../assets/arrowRight.png')}
                     />
@@ -45,32 +67,32 @@ const styles = StyleSheet.create({
     itens: {
         flexDirection: 'row',
         paddingTop: 16,
-        justifyContent:'space-around',
+        justifyContent: 'space-around',
     },
     title: {
         alignItems: 'center',
-        
+
     },
     text: {
         color: 'white',
         fontSize: 26,
     },
     date: {
-        width:'40%',
-        backgroundColor:colors('greenButton'),
+        width: '40%',
+        backgroundColor: colors('greenButton'),
         alignItems: 'center',
         padding: 10,
         borderRadius: 30,
-        
+
     },
-    mes:{
-        fontSize: 18,
+    mes: {
+        fontSize: 14,
     },
     iconLeft: {
-        paddingTop: 7,
+        paddingTop: 5,
     },
     iconRight: {
-        paddingTop: 7,
+        paddingTop: 5,
     },
 
 });
