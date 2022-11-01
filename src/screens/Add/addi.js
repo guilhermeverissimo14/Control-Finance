@@ -28,18 +28,17 @@ export default function Addi() {
     }
 
     const [description, setDescrition] = useState('');
-    console.log(description);
-
-    const [val, setValue] = useState();
-    console.log(val);
-
+    const [val, setValue] = useState(0);
     const [selectedDate, setSelectedDate] = useState('');
-    console.log(selectedDate);
     const [modalVisible, setModalVisible] = useState(false);
     const [capital, setCapital] = useState(true);
 
     function handleModal() {
         setModalVisible(true);
+    }
+
+    function handleSubmit() {
+        console.log({ description, val, selectedDate })
     }
 
     const Date = () => {
@@ -113,11 +112,11 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1}>
+                        <TouchableOpacity style={styles.button1} onPress={handleSubmit}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
@@ -186,11 +185,11 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput onChangeText={setValue} value={val} placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput onChangeText={setValue} value={val} keyboardType="number-pad" placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1}>
+                        <TouchableOpacity style={styles.button1} onPress={handleSubmit}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
