@@ -20,7 +20,6 @@ export default function Loading() {
                 loop={false}
                 onAnimationFinish={() => naviation.navigate('signin')}
                 speed={0.5}
-
             />
         </View>
     )
