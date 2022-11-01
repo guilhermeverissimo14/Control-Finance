@@ -6,7 +6,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import DatePicker from 'react-native-modern-datepicker';
 
 import colors from '../../global/color';
-import Navigation from '../../components/Home/navigation';
 import Header from '../../components/Add/header';
 
 import { useNavigation } from '@react-navigation/native';
