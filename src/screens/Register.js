@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
-import Input from '../components/Input';
+import Input from '../components/Register/Input';
 import colors from '../global/color'
 
 export default function Cadastre() {
@@ -33,7 +33,7 @@ const Step1 = ({ name, setName }) => {
             <View style={styles.step}>
                 <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
                     <Text style={styles.text}>1 - Informe seu nome:*</Text>
-                    <TextInput placeholder="Responda aqui..." onChangeText={setName} value={name} keyboardType="email-address" autoCorrect={false} placeholderTextColor={colors('white')} style={styles.input} />
+                    <Input placeholder="Responda aqui..." keyboardType="email-address" value={name} onChange={setName}  style={styles.input}/>
                     <View style={styles.align}>
                         <View />
                         <TouchableOpacity onPress={next} style={styles.arrowRight1}>
@@ -56,7 +56,7 @@ const Step2 = () => {
             </View>
             <View style={styles.step}>
                 <Text style={styles.text}>2 - Informe seu e-mail:*</Text>
-                <TextInput placeholder="Responda aqui..." onChangeText={setEmail} value={email} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                <TextInput placeholder="Responda aqui..." onChangeText={setEmail} value={email}  placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                 <View style={styles.align}>
                     <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
                         <Image
