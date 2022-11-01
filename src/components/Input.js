@@ -3,10 +3,8 @@ import { View, TextInput, Image, StyleSheet, KeyboardAvoidingView, Platform, Tou
 
 import colors from '../global/color';
 
-export default function Input({ placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
-    const [hidePass, setHidePass] = useState(true);
-    const [passUser, setPassUser] = useState('');
-    console.log(passUser);
+export default function Input({ value, onChange, placeholder, security = false, keyboardType, autoCorrect = true, returnKeyType = "next", icon = null }) {
+    
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <View style={styles.inputArea}>
@@ -33,8 +31,8 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     autoCorrect={autoCorrect}
                     returnKeyType={returnKeyType}
                     style={styles.input}
-                    onChangeText={setPassUser}
-                    value={passUser}
+                    onChangeText={onChange}
+                    value={value}
                 />
             </View>
         </KeyboardAvoidingView>
