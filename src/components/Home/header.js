@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
-
+import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 import colors from "../../global/color";
+
 //função que faz a verificação porque o "currentHeight" e so para android.
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
 export default function Header() {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
            
@@ -17,7 +19,15 @@ export default function Header() {
                     resizeMode="contain"
 
                 />
+
                 <Text style={styles.User}>Olá Luana</Text>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image 
+                        source={require('../../assets/exit.png')}
+                    />
+                </TouchableOpacity>
+
+                
             </View>
         </View>
 
