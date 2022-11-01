@@ -37,8 +37,6 @@ export default function Input({ placeholder, security = false, keyboardType, aut
                     value={passUser}
                 />
             </View>
-
-
         </KeyboardAvoidingView>
     );
 }
