@@ -18,8 +18,8 @@ export default function SingIn() {
         navigation.navigate("register");
     }
 
-    function handlePassword() {
-        navigation.navigate("password");
+    function handleForget(){
+        navigation.navigate("forget");
     }
 
     //função para não voltar no botão do celular
@@ -42,7 +42,7 @@ export default function SingIn() {
                 <Input placeholder="E-mail" keyboardType="email-address" value={email} onChange={setEmail} icon="user" />
                 <Input placeholder="Senha" keyboardType="password" security icon="pass" value={passUser} onChange={setPassUser} />
 
-                <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
+                <TouchableOpacity style={styles.forgot} onPress={handleForget}>
                     <Text style={styles.textForgot}>
                         Esqueceu sua senha?
                     </Text>

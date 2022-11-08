@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 
 const Step1 = ({ name, setName, next, value }) => {
     const navigation = useNavigation();
     return (
-        <View style={styles.element}>
+        <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
                 <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
@@ -36,13 +36,13 @@ const Step1 = ({ name, setName, next, value }) => {
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const Step2 = ({ email, setEmail, previous, next, value }) => {
     return (
-        <View style={styles.element}>
+        <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
                 <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
@@ -70,13 +70,13 @@ const Step2 = ({ email, setEmail, previous, next, value }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const Step3 = ({ password, setPassword, previous, next, value }) => {
     return (
-        <View style={styles.element}>
+        <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
                 <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
@@ -105,13 +105,13 @@ const Step3 = ({ password, setPassword, previous, next, value }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
 const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, value }) => {
     return (
-        <View style={styles.element}>
+        <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
                 <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
@@ -137,7 +137,7 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                 {confirmPassword.length > 3 && password !== confirmPassword &&
                     <Text style={styles.error}>As senhas não coincidem!</Text>}
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -161,6 +161,18 @@ export default function Cadastre() {
     useEffect(() => {
         console.log('name', name)
     }, [name])
+
+    useEffect(() => {
+        console.log('email', email)
+    }, [email])
+
+    useEffect(() => {
+        console.log('password', password)
+    }, [password])
+    
+    useEffect(() => {
+        console.log('Confirm', confirmPassword)
+    }, [confirmPassword])
 
 
     return (
