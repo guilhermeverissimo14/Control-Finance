@@ -38,9 +38,9 @@ export default function Input({ value, onChange, placeholder, security = false, 
                 {security && (
                     <TouchableOpacity style={styles.securityIcon} onPress={() => setHidePass(!hidePass)}>
                         {hidePass ? (
-                            <Eye color={colors('white')} size={20} />
+                            <Eye color={colors('black')} size={20} />
                         ) : (
-                            <EyeSlash color={colors('white')} size={20} />
+                            <EyeSlash color={colors('black')} size={20} />
                         )}
                     </TouchableOpacity>
                 )}
@@ -50,13 +50,6 @@ export default function Input({ value, onChange, placeholder, security = false, 
 }
 
 const styles = StyleSheet.create({
-
-    input: {
-        width: '80%',
-        fontSize: 16,
-        paddingHorizontal: 10,
-
-    },
     inputArea: {
         flexDirection: 'row',
         width: '100%',
@@ -67,7 +60,18 @@ const styles = StyleSheet.create({
         color: colors("black"),
         backgroundColor: colors("white"),
         borderRadius: 10,
+    },
+    input: {
+        width: '65%',
+        fontSize: 16,
+        paddingHorizontal: 10,
 
     },
+    securityIcon: {
+        width: '20%',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 
 });
