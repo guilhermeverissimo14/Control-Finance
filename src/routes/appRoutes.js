@@ -6,6 +6,7 @@ import Register from '../screens/Register';
 import Report from '../screens/Report/Report';
 import Add from '../screens/Add/addi';
 import Loading from '../screens/loading/loading';
+import Forget from '../screens/Forget/Forget';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function AppRoutes() {
             <Screen name="register" component={Register} />
             <Screen name="report" component={Report} />
             <Screen name="add" component={Add} />
+            <Screen name="forget" component={Forget}/>
         </Navigator>
     )
 }
