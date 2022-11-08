@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 
 const Step1 = ({ name, setName, next, value }) => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
@@ -21,8 +23,12 @@ const Step1 = ({ name, setName, next, value }) => {
                         style={styles.input}
                     />
                     <View style={styles.align}>
-                        <View />
-                        <TouchableOpacity onPress={next} style={styles.arrowRight1}>
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.arrowLeft}>
+                            <Image
+                                source={require('../assets/arrowLeft.png')}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
                             <Image
                                 source={require('../assets/arrowRight.png')}
                             />
@@ -125,11 +131,6 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                     <TouchableOpacity onPress={previous} style={styles.arrowLeft}>
                         <Image
                             source={require('../assets/arrowLeft.png')}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={next} style={styles.arrowRight}>
-                        <Image
-                            source={require('../assets/arrowRight.png')}
                         />
                     </TouchableOpacity>
                 </View>

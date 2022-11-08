@@ -5,8 +5,8 @@ import Home from '../screens/Home/Home';
 import Register from '../screens/Register';
 import Report from '../screens/Report/Report';
 import Add from '../screens/Add/addi';
-import Loading from '../screens/loading/loading';
 import Forget from '../screens/Forget/Forget';
+import Loading from '../screens/Loading/Loading';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

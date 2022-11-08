@@ -24,6 +24,8 @@ export default function Header() {
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image 
                         source={require('../../assets/exit.png')}
+                        style={{marginLeft: '52%', width: 30, height: 30 }}
+                        resizeMode="contain"
                     />
                 </TouchableOpacity>
 
