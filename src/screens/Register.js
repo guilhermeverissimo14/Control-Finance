@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 
+import firestore from '@react-native-firebase/firestore';
+
 const Step1 = ({ name, setName, next, value }) => {
     const navigation = useNavigation();
     return (
@@ -133,6 +135,11 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                             source={require('../assets/arrowLeft.png')}
                         />
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={handleRegister()} style={styles.arrowRight}>
+                        <Image
+                            source={require('../assets/arrowRight.png')}
+                        />
+                    </TouchableOpacity>
                 </View>
                 {confirmPassword.length > 3 && password !== confirmPassword &&
                     <Text style={styles.error}>As senhas não coincidem!</Text>}
@@ -156,6 +163,19 @@ export default function Cadastre() {
     const next = () => {
         if (value < 100)
             setValue(Number(value) + 25);
+    }
+
+    function handleRegister(){
+        firestore()
+        .collection('users')
+        .add({
+            name,
+            email,
+            password,
+            create_at: firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => Alert.alert("Usuário", "Usuário cadastrado com sucesso!"))
+        .catch((error) => console.log(error));
     }
 
     useEffect(() => {
