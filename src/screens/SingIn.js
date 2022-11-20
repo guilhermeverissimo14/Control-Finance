@@ -55,8 +55,8 @@ export default function SingIn() {
         navigation.navigate("register");
     }
 
-    function handlePassword() {
-        navigation.navigate("password");
+    function handleForget() {
+        navigation.navigate("forget");
     }
 
     //função para não voltar no botão do celular
@@ -79,13 +79,13 @@ export default function SingIn() {
                 <Input placeholder="E-mail" keyboardType="email-address" value={email} onChange={setEmail} icon="user" />
                 <Input placeholder="Senha" keyboardType="password" security icon="pass" value={password} onChange={setPassword} />
 
-                <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
+                <TouchableOpacity style={styles.forgot} onPress={handleForget}>
                     <Text style={styles.textForgot}>
                         Esqueceu sua senha?
                     </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={handleSigIn} >
+                <TouchableOpacity style={styles.button} onPress={handleSigIn}>
                     <Text style={styles.textButton}>
                         Acessar
                     </Text>
@@ -97,7 +97,7 @@ export default function SingIn() {
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View >
+        </View>
     )
 }
 
@@ -111,27 +111,22 @@ const styles = StyleSheet.create({
     form: {
         width: "75%",
         justifyContent: 'center',
-
     },
     button: {
-
         backgroundColor: '#95FEEC',
         padding: 10,
         width: '100%',
         borderRadius: 30,
-        marginVertical: 15
+        marginVertical: 15,
     },
     textButton: {
         fontSize: 20,
         color: '#142F30',
         textTransform: 'uppercase',
         textAlign: 'center'
-
     },
     forgot: {
         marginVertical: 5,
-
-
     },
     textForgot: {
         color: "white",
@@ -142,4 +137,3 @@ const styles = StyleSheet.create({
         top: 15,
     }
 });
-

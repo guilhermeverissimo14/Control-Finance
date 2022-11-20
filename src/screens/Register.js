@@ -1,11 +1,14 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView } from 'react-native';
 import colors from '../global/color';
 
+import firestore from '@react-native-firebase/firestore';
+
 const Step1 = ({ name, setName, next, value }) => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.element}>
-
             <View style={styles.barContainer}>
                 <View style={{ backgroundColor: colors('greenLoading'), borderRadius: 6, width: value.toString() + '%' }} />
             </View>
@@ -23,8 +26,12 @@ const Step1 = ({ name, setName, next, value }) => {
                         style={styles.input}
                     />
                     <View style={styles.align}>
-                        <View />
-                        <TouchableOpacity onPress={next} style={styles.arrowRight1}>
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.arrowLeft}>
+                            <Image
+                                source={require('../assets/arrowLeft.png')}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={next} style={styles.arrowRight}>
                             <Image
                                 source={require('../assets/arrowRight.png')}
                             />
@@ -129,7 +136,7 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                             source={require('../assets/arrowLeft.png')}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={next} style={styles.arrowRight}>
+                    <TouchableOpacity onPress={handleRegister()} style={styles.arrowRight}>
                         <Image
                             source={require('../assets/arrowRight.png')}
                         />
@@ -159,9 +166,34 @@ export default function Cadastre() {
             setValue(Number(value) + 25);
     }
 
+    function handleRegister() {
+        firestore()
+            .collection('users')
+            .add({
+                name,
+                email,
+                password,
+                create_at: firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => Alert.alert("Usuário", "Usuário cadastrado com sucesso!"))
+            .catch((error) => console.log(error));
+    }
+
     useEffect(() => {
         console.log('name', name)
     }, [name])
+
+    useEffect(() => {
+        console.log('email', email)
+    }, [email])
+
+    useEffect(() => {
+        console.log('password', password)
+    }, [password])
+
+    useEffect(() => {
+        console.log('Confirm', confirmPassword)
+    }, [confirmPassword])
 
 
     return (
