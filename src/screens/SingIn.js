@@ -1,17 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, BackHandler } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { StyleSheet, Text, View, Image, TouchableOpacity, BackHandler, Alert } from 'react-native';
 import colors from '../global/color';
 import Input from '../components/Input';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SingIn() {
     const [email, setEmail] = useState('');
-    const [passUser, setPassUser] = useState('');
+    const [password, setPassword] = useState('');
 
     const navigation = useNavigation();
 
     function handleSigIn() {
-        navigation.navigate("home");
+        if (!email && !password) {
+            return Alert.alert('Erro', 'Preencha todos os campos.');
+        }
+
+        if (email && !password) {
+            return Alert.alert('Erro', 'Informe a senha.');
+        }
+
+        if (!email && password) {
+            return Alert.alert('Erro', 'Informe o e-mail.');
+        }
+
+        auth()
+            .signInWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log('User account signed in!');
+                console.log(auth().currentUser);
+            })
+            .catch(error => {
+                console.log(error);
+                console.log('code: ', error.code);
+
+                if (error.code === 'auth/invalid-email') {
+                    return Alert.alert('Erro', 'E-mail inválido.');
+                }
+
+                if (error.code === 'auth/wrong-password') {
+                    return Alert.alert('Erro', 'E-mail ou senha inválida.');
+                }
+
+                if (error.code === 'auth/user-not-found') {
+                    return Alert.alert('Erro', 'E-mail ou senha inválida.');
+                }
+
+                return Alert.alert('Erro', 'Ocorreu um erro ao fazer login.');
+            });
+        //navigation.navigate("home"); // Não precisa mais.. agora a autenticação é feita no firebase e não mais no app.
     }
 
     function handleRegister() {
@@ -40,7 +77,7 @@ export default function SingIn() {
             <View style={styles.form}>
 
                 <Input placeholder="E-mail" keyboardType="email-address" value={email} onChange={setEmail} icon="user" />
-                <Input placeholder="Senha" keyboardType="password" security icon="pass" value={passUser} onChange={setPassUser} />
+                <Input placeholder="Senha" keyboardType="password" security icon="pass" value={password} onChange={setPassword} />
 
                 <TouchableOpacity style={styles.forgot} onPress={handlePassword}>
                     <Text style={styles.textForgot}>
@@ -63,6 +100,7 @@ export default function SingIn() {
         </View >
     )
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

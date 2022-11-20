@@ -1,6 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import auth from '@react-native-firebase/auth';
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { UserCircle, SignOut } from 'phosphor-react-native'
 
 import colors from "../../global/color";
 
@@ -8,51 +10,55 @@ import colors from "../../global/color";
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
 export default function Header() {
+    const [user] = useState(auth().currentUser);
+
+    //console.log('user', user);
+
+    function handleLogout() {
+        auth()
+            .signOut()
+            .catch((error) => {
+                console.log('Error signing out: ', error);
+                return Alert.alert('Erro', 'Não foi possível sair.');
+            });
+    }
+
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-           
-            <View style={styles.content}>
-                <Image
-                    source={require('../../assets/UserCircle.png')}
-                    style={{ width: '30%', height: '300%' }}
-                    resizeMode="contain"
+            <View style={styles.contentLeft}>
+                <UserCircle size={48} color="#FFF" />
 
-                />
-
-                <Text style={styles.User}>Olá Luana</Text>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image 
-                        source={require('../../assets/exit.png')}
-                    />
-                </TouchableOpacity>
-
-                
+                <Text style={styles.user}>Olá, {user.email}!</Text>
             </View>
-        </View>
 
+
+            <TouchableOpacity onPress={handleLogout}>
+                <SignOut size={32} color="#FFF" />
+            </TouchableOpacity>
+        </View>
     )
 }
+
 const styles = StyleSheet.create({
     container: {
+        height: '15%',
         backgroundColor: colors('greenPrimary'),
         paddingTop: statusBarHeight,
-        paddingEnd: 16,
-        paddingStart: 16,
-        paddingBottom: 44,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
         flexDirection: 'row',
-    },
-    content: {
-        flex: 1,
         alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-
+        justifyContent: 'space-between',
     },
-    User: {
+    contentLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    user: {
         fontSize: 24,
         color: 'white',
+        marginLeft: 10,
         fontWeight: 'bold',
     },
-   
 })
