@@ -2,8 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView, Alert } from 'react-native';
 import colors from '../global/color';
-
-import firestore from '@react-native-firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Step1 = ({ name, setName, next, value }) => {
     const navigation = useNavigation();
@@ -151,11 +150,13 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
 
 export default function Cadastre() {
     const navigation = useNavigation();
+    const auth = getAuth();
     const [value, setValue] = useState(25);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const previous = () => {
         if (value > 0)
@@ -167,22 +168,45 @@ export default function Cadastre() {
             setValue(Number(value) + 25);
     }
 
-    function handleRegister() {
-        firestore()
-            .collection('users')
-            .add({
-                name,
-                email,
-                password,
-                created_at: firestore.FieldValue.serverTimestamp()
-                
-            })
-            .then(() => {
+    async function handleRegister() {
+        await createUserWithEmailAndPassword(auth, email, password)
+        .then( async (userCredential) => {
+            const user = userCredential.user;
+            console.log('user', user);
+            const displayName = user.displayName;
+            await updateProfile(auth.currentUser, {
+                displayName: displayName
+              }).then(() => {
                 Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
-                navigation.goBack();
-            })
-            .catch((error) => console.log(error));
+                setSuccess(true);
+              }).catch((error) => {
+                console.log('error', error);
+              });
+        })
+        .catch((error) => console.log(error));
     }
+
+    useEffect(() => {
+        if (success)
+            navigation.goBack();
+    },[success])
+
+    // function handleRegister() {
+    //     firestore()
+    //         .collection('users')
+    //         .add({
+    //             name,
+    //             email,
+    //             password,
+    //             created_at: firestore.FieldValue.serverTimestamp()
+                
+    //         })
+    //         .then(() => {
+    //             Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
+    //             navigation.goBack();
+    //         })
+    //         .catch((error) => console.log(error));
+    // }
 
     useEffect(() => {
         console.log('name', name)
