@@ -69,7 +69,7 @@ export default function SingIn() {
     return (
         <View style={styles.container}>
             <Image
-                source={require('../assets/UserCircle.png')}
+                source={require('../assets/logo.png')}
                 resizeMode="contain"
                 style={{ width: '70%', height: '30%' }}
             />

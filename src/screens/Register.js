@@ -4,6 +4,7 @@ import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFe
 import colors from '../global/color';
 
 import firestore from '@react-native-firebase/firestore';
+import { Button } from 'react-native-web';
 
 const Step1 = ({ name, setName, next, value }) => {
     const navigation = useNavigation();
@@ -136,10 +137,13 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                             source={require('../assets/arrowLeft.png')}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleRegister} style={styles.arrowRight}>
-                        <Image
+                    <TouchableOpacity onPress={handleRegister} style={styles.arrowFinish}>
+                        <Text style={styles.text1}>
+                            Finalizar
+                        </Text>
+                        {/* <Image
                             source={require('../assets/arrowRight.png')}
-                        />
+                        /> */}
                     </TouchableOpacity>
                 </View>
                 {confirmPassword.length > 3 && password !== confirmPassword &&
@@ -278,4 +282,19 @@ const styles = StyleSheet.create({
         marginLeft: '71%',
         marginHorizontal: 30,
     },
+    arrowFinish: {
+        borderRadius: 10,
+        width: '30%',
+        height: '70%',
+        padding: 5,
+        alignItems: 'center',
+        backgroundColor: colors('white'),
+        marginTop: 15,
+        marginRight: -30,
+        marginHorizontal: 30,
+    },
+    text1:{
+        color: colors('greenPrimary'),
+        fontWeight: 'bold',
+    }
 });
