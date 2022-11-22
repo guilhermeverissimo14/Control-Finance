@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AppRoutes from './appRoutes';
 import Loading from '../components/Loading';
 import SingIn from '../screens/SingIn';
+import Register from '../screens/Register';
+import { SignIn } from 'phosphor-react-native';
+
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function Routes() {
     const [loading, setLoading] = useState(true);
@@ -31,7 +36,12 @@ export default function Routes() {
             {user !== null ?
                 <AppRoutes />
                 :
-                <SingIn />
+                <Navigator screenOptions={{ headerShown: false }}>
+                    <Screen name="singin" component={SingIn} />
+                    <Screen name="register" component={Register} />
+                </Navigator>
+                
+
             }
         </NavigationContainer>
     );

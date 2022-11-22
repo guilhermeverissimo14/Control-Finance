@@ -12,7 +12,6 @@ export default function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen name="home" component={Home} />
-            <Screen name="register" component={Register} />
             <Screen name="report" component={Report} />
             <Screen name="add" component={Add} />
             <Screen name="forget" component={Forget} />

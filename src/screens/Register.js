@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView, Alert } from 'react-native';
 import colors from '../global/color';
 
 import firestore from '@react-native-firebase/firestore';
@@ -112,7 +112,7 @@ const Step3 = ({ password, setPassword, previous, next, value }) => {
     )
 }
 
-const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, value }) => {
+const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, value, handleRegister }) => {
     return (
         <SafeAreaView style={styles.element}>
             <View style={styles.barContainer}>
@@ -136,7 +136,7 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
                             source={require('../assets/arrowLeft.png')}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleRegister()} style={styles.arrowRight}>
+                    <TouchableOpacity onPress={handleRegister} style={styles.arrowRight}>
                         <Image
                             source={require('../assets/arrowRight.png')}
                         />
@@ -150,6 +150,7 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
 }
 
 export default function Cadastre() {
+    const navigation = useNavigation();
     const [value, setValue] = useState(25);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -173,9 +174,13 @@ export default function Cadastre() {
                 name,
                 email,
                 password,
-                create_at: firestore.FieldValue.serverTimestamp()
+                created_at: firestore.FieldValue.serverTimestamp()
+                
             })
-            .then(() => Alert.alert("Usuário", "Usuário cadastrado com sucesso!"))
+            .then(() => {
+                Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
+                navigation.goBack();
+            })
             .catch((error) => console.log(error));
     }
 
@@ -209,7 +214,7 @@ export default function Cadastre() {
                     <Step3 password={password} setPassword={setPassword} previous={previous} next={next} value={value} />
                 )}
                 {value === 100 && (
-                    <Step4 password={password} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} previous={previous} next={next} value={value} />
+                    <Step4 password={password} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} previous={previous} next={next} value={value} handleRegister={handleRegister}/>
                 )}
             </View>
         </>
