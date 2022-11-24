@@ -13,6 +13,9 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export default function Addi() {
+    function maskMoney(value) {
+        return 'R$ ' + value?.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+    }
     //naviation
     const navigation = useNavigation();
 
@@ -111,7 +114,7 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onPress={maskMoney} onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
@@ -181,10 +184,9 @@ export default function Addi() {
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput onChangeText={setValue} value={val} keyboardType="number-pad" placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput onChange={text => setValue (maskMoney(text))} value={val} keyboardType="number-pad" placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>

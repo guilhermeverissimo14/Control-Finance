@@ -68,12 +68,11 @@ export default function SingIn() {
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require('../assets/logo.png')}
-                resizeMode="contain"
-                style={{ width: '70%', height: '30%' }}
-            />
-
+                <Image
+                    source={require('../assets/tech2.png')}
+                    resizeMode="contain"
+                    style={{ width: '100%', height: '35%' }}
+                />
             <View style={styles.form}>
 
                 <Input placeholder="E-mail" keyboardType="email-address" value={email} onChange={setEmail} icon="user" />
@@ -109,6 +108,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     form: {
+        paddingTop:20,
+        paddingBottom:50,
         width: "75%",
         justifyContent: 'center',
     },
