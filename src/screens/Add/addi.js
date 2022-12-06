@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,9 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 export default function Addi() {
-    function maskMoney(value) {
-        return 'R$ ' + value?.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-    }
+
     //naviation
     const navigation = useNavigation();
 
@@ -34,26 +32,38 @@ export default function Addi() {
     const [selectedDate, setSelectedDate] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [capital, setCapital] = useState(true);
+    const [valid, setValid] = useState(false);
 
+    useEffect(()=>{
+        if (description.length < 1 || !val ||  selectedDate.length < 1 ){
+            setValid(false);
+        }else
+        setValid(true);
+    },[description, val, selectedDate])
+    
     function handleModal() {
         setModalVisible(true);
     }
 
-    function handleCapital() {
-        firestore()
-            .collection('capital')
-            .add({
-                description,
-                val,
-                selectedDate,
-                created_at: firestore.FieldValue.serverTimestamp()
+    function invalidForm(){
+        Alert.alert("Preencha todos os campos")
+    }
 
-            })
-            .then(() => {
-                Alert.alert("Capital", "Capital cadastrado com sucesso!")
-                navigation.goBack();
-            })
-            .catch((error) => console.log(error));
+    function handleCapital() {
+            firestore()
+                .collection('capital')
+                .add({
+                    description,
+                    val,
+                    selectedDate,
+                    created_at: firestore.FieldValue.serverTimestamp()
+
+                })
+                .then(() => {
+                    Alert.alert("Capital", "Capital cadastrado com sucesso!")
+                    navigation.goBack();
+                })
+                .catch((error) => console.log(error));
     }
 
     function handleExpense() {
@@ -64,7 +74,6 @@ export default function Addi() {
                 val,
                 selectedDate,
                 created_at: firestore.FieldValue.serverTimestamp()
-
             })
             .then(() => {
                 Alert.alert("Despesas", "Despesas cadastrado com sucesso!")
@@ -144,11 +153,11 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onPress={maskMoney} onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1} onPress={handleCapital}>
+                        <TouchableOpacity style={styles.button1} onPress={valid ? handleCapital : invalidForm}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
@@ -216,11 +225,11 @@ export default function Addi() {
                     </View>
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onPress={maskMoney} onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1} onPress={handleExpense}>
+                        <TouchableOpacity style={styles.button1}  onPress={valid ? handleExpense : invalidForm}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
