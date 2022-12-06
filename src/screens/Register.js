@@ -2,7 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Image, Keyboard, SafeAreaView, Alert } from 'react-native';
 import colors from '../global/color';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "@react-native-firebase/auth";
+import auth from '@react-native-firebase/auth';
+
 
 const Step1 = ({ name, setName, next, value }) => {
     const navigation = useNavigation();
@@ -150,7 +152,7 @@ const Step4 = ({ password, confirmPassword, setConfirmPassword, previous, next, 
 
 export default function Cadastre() {
     const navigation = useNavigation();
-    const auth = getAuth();
+    //const auth = getAuth();
     const [value, setValue] = useState(25);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -169,27 +171,27 @@ export default function Cadastre() {
     }
 
     async function handleRegister() {
-        await createUserWithEmailAndPassword(auth, email, password)
-        .then( async (userCredential) => {
-            const user = userCredential.user;
-            console.log('user', user);
-            const displayName = user.displayName;
-            await updateProfile(auth.currentUser, {
-                displayName: displayName
-              }).then(() => {
-                Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
-                setSuccess(true);
-              }).catch((error) => {
-                console.log('error', error);
-              });
-        })
-        .catch((error) => console.log(error));
+        await auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+                console.log('user', user);
+                return user.updateProfile({
+                    displayName: name
+                }).then(() => {
+                    Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
+                    setSuccess(true);
+                }).catch((error) => {
+                    console.log('error', error);
+                });
+            })
+            .catch((error) => console.log(error));
     }
 
     useEffect(() => {
         if (success)
             navigation.goBack();
-    },[success])
+    }, [success])
 
     // function handleRegister() {
     //     firestore()
@@ -199,7 +201,7 @@ export default function Cadastre() {
     //             email,
     //             password,
     //             created_at: firestore.FieldValue.serverTimestamp()
-                
+
     //         })
     //         .then(() => {
     //             Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
@@ -238,7 +240,7 @@ export default function Cadastre() {
                     <Step3 password={password} setPassword={setPassword} previous={previous} next={next} value={value} />
                 )}
                 {value === 100 && (
-                    <Step4 password={password} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} previous={previous} next={next} value={value} handleRegister={handleRegister}/>
+                    <Step4 password={password} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} previous={previous} next={next} value={value} handleRegister={handleRegister} />
                 )}
             </View>
         </>
