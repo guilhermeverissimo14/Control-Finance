@@ -176,14 +176,15 @@ export default function Cadastre() {
             .then(async (userCredential) => {
                 const user = userCredential.user;
                 console.log('user', user);
-                return user.updateProfile({
-                    displayName: name
-                }).then(() => {
-                    Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
-                    setSuccess(true);
-                }).catch((error) => {
-                    console.log('error', error);
-                });
+                await auth().currentUser.updateProfile({
+                    displayName: name,
+                })
+                    .then(() => {
+                        Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
+                    }).catch((error) => {
+                        console.log('error', error);
+                    });
+                setSuccess(true);
             })
             .catch((error) => console.log(error));
     }

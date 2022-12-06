@@ -55,3 +55,11 @@ export const years = (year) => {
             return 'Ano não encontrado';
     }
 }
+
+export const maskMoney = (value) => {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+export const unmaskMoney = (value) => {
+    return value.replace(/[^0-9]/g, '');
+}
