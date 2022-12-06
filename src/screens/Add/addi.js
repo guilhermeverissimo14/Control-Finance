@@ -10,7 +10,7 @@ import Header from '../../components/Add/header';
 
 import { useNavigation } from '@react-navigation/native';
 
-
+import firestore from '@react-native-firebase/firestore';
 
 export default function Addi() {
     function maskMoney(value) {
@@ -39,8 +39,38 @@ export default function Addi() {
         setModalVisible(true);
     }
 
-    function handleSubmit() {
-        console.log({ description, val, selectedDate })
+    function handleCapital() {
+        firestore()
+            .collection('capital')
+            .add({
+                description,
+                val,
+                selectedDate,
+                created_at: firestore.FieldValue.serverTimestamp()
+
+            })
+            .then(() => {
+                Alert.alert("Capital", "Capital cadastrado com sucesso!")
+                navigation.goBack();
+            })
+            .catch((error) => console.log(error));
+    }
+
+    function handleExpense() {
+        firestore()
+            .collection('expense')
+            .add({
+                description,
+                val,
+                selectedDate,
+                created_at: firestore.FieldValue.serverTimestamp()
+
+            })
+            .then(() => {
+                Alert.alert("Despesas", "Despesas cadastrado com sucesso!")
+                navigation.goBack();
+            })
+            .catch((error) => console.log(error));
     }
 
     const Date = () => {
@@ -118,7 +148,7 @@ export default function Addi() {
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1} onPress={handleSubmit}>
+                        <TouchableOpacity style={styles.button1} onPress={handleCapital}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
@@ -186,21 +216,21 @@ export default function Addi() {
                     </View>
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput onChange={text => setValue (maskMoney(text))} value={val} keyboardType="number-pad" placeholder="R$ 0,00" placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onPress={maskMoney} onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
                     </View>
 
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.button1} onPress={handleSubmit}>
+                        <TouchableOpacity style={styles.button1} onPress={handleExpense}>
                             <Text style={styles.TextButton}>
                                 Adicionar
                             </Text>
                         </TouchableOpacity>
                     </View>
 
-                <Date />
-                
-                {/* Tela de naviation */}
-                <View style={styles.navigation}>
+                    <Date />
+
+                    {/* Tela de naviation */}
+                    <View style={styles.navigation}>
                         <View style={styles.home}>
                             <TouchableOpacity onPress={handleSigIn}>
                                 <Image
