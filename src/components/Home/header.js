@@ -29,7 +29,7 @@ export default function Header() {
             <View style={styles.contentLeft}>
                 <UserCircle size={48} color="#FFF" />
 
-                <Text style={styles.user}>Olá, {user.displayName}!</Text>
+                <Text style={styles.user}>Olá {user.displayName}</Text>
             </View>
 
 

@@ -1,16 +1,29 @@
 import React from 'react';
-import { View, StyleSheet, Image} from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
+import { PieChart } from 'react-native-svg-charts';
 
 import colors from '../../global/color';
 
 export default function Graphic() {
+
+    const data = [50, 50, 40]
+
+    const pieData = data
+        .filter((value) => value > 0)
+        .map((value, index) => ({
+            value,
+            svg: {
+                fill: '#ff2222'
+            },
+            key: `pie-${index}`,
+        }))
+    
     return (
+
         <View style={styles.container}>
             <View style={styles.principal}>
-                <Image
-                  source={require('../../assets/graphic.png')}
-                   resizeMode="contain"  
-                />
+                <PieChart style={{ height: 300 }} data={pieData} >
+                </PieChart>
             </View>
         </View>
 
@@ -18,7 +31,7 @@ export default function Graphic() {
 }
 const styles = StyleSheet.create({
     container: {
-        
+
     },
     principal: {
         padding: 10,
