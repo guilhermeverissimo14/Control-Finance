@@ -108,8 +108,8 @@ export default function Balance() {
                     <Text style={styles.text}>Capital:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo1}>R$</Text>
-                        <Text style={styles.valor}>{Number(capital)?.toFixed(2)}</Text>
+                        <Text style={styles.simbolo1}> R$ </Text>
+                        <Text style={styles.valor}> {Number(capital)?.toFixed(2) }</Text>
                         <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon}
                                 source={require('../../assets/Edit.png')}
@@ -125,7 +125,7 @@ export default function Balance() {
                     <Text style={styles.text}>Despesas:</Text>
                     <View style={styles.valores}>
 
-                        <Text style={styles.simbolo}> R$</Text>
+                        <Text style={styles.simbolo}> R$ </Text>
                         <Text style={styles.valor1}>{Number(expense)?.toFixed(2)}</Text>
                         <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon1}
