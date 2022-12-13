@@ -195,23 +195,6 @@ export default function Cadastre() {
             navigation.goBack();
     }, [success])
 
-    // function handleRegister() {
-    //     firestore()
-    //         .collection('users')
-    //         .add({
-    //             name,
-    //             email,
-    //             password,
-    //             created_at: firestore.FieldValue.serverTimestamp()
-
-    //         })
-    //         .then(() => {
-    //             Alert.alert("Usuário", "Usuário cadastrado com sucesso!")
-    //             navigation.goBack();
-    //         })
-    //         .catch((error) => console.log(error));
-    // }
-
     useEffect(() => {
         console.log('name', name)
     }, [name])

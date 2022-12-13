@@ -6,46 +6,24 @@ import colors from '../../global/color';
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 3 : 40; //observação: depois tem que testar em iphone que pode ser que o reader fique muito grande com 40.
 
-export default function Report() {
-    const date = new Date();
-    const [currentYear, setCurrentYear] = useState(date.getFullYear());
-    const [currentMonth, setCurrentMonth] = useState(date.getMonth() + 1);
-
-    const backMonth = () => {
-        if (currentMonth === 1) {
-            setCurrentMonth(12);
-            setCurrentYear(currentYear - 1);
-        } else {
-            setCurrentMonth(currentMonth - 1);
-        }
-    }
-
-    const nextMonth = () => {
-        if (currentMonth === 12) {
-            setCurrentMonth(1);
-            setCurrentYear(currentYear + 1);
-        } else {
-            setCurrentMonth(currentMonth + 1);
-        }
-    }
-
+export default function Report(props) {
     return (
         <View style={styles.container}>
             <View style={styles.title}>
                 <Text style={styles.text}>Relatório Mensal </Text>
             </View>
             <View style={styles.itens}>
-                <TouchableOpacity style={styles.iconLeft} onPress={backMonth} >
+                <TouchableOpacity style={styles.iconLeft} onPress={props.backMonth} >
                     <Image
                         source={require('../../assets/arrowLeft.png')}
                     />
                 </TouchableOpacity>
 
                 <View style={styles.date}>
-                    <Text style={styles.mes}>{months(currentMonth)} / {years(currentYear)}</Text>
+                    <Text style={styles.mes}>{months(props.currentMonth)} / {years(props.currentYear)}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.iconRight} onPress={nextMonth}>
+                <TouchableOpacity style={styles.iconRight} onPress={props.nextMonth}>
                     <Image
                         source={require('../../assets/arrowRight.png')}
                     />

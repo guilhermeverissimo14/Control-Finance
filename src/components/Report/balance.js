@@ -3,8 +3,9 @@ import { View, Text, StyleSheet,  FlatList} from 'react-native';
 import colors from '../../global/color';
 import firestore from '@react-native-firebase/firestore';
 
-export default function Report() {
-    const [data, setData] = useState([]);
+export default function Report(props) {
+    const [data, setData] = useState([]); 
+    const [dataByDate, setdatabyDate] = useState([]); 
 
     const Item = ({ description, value }) => (
         <>
@@ -24,17 +25,18 @@ export default function Report() {
 
     const getBalance = () => {
         firestore()
-        .collection('capital')
+        .collection('expense')
         .get()
         .then((querySnapshot) => {
             let d = [];
             querySnapshot.forEach((doc, index) => {
-                //console.log(doc.description, " => ", doc.data());
                 const balance = {
                     id: index.toString(),
                     description: doc.data().description,
+                    selectedDate: doc.data().selectedDate,
                     val: doc.data().val
                 };
+
                 d.push(balance);
             });
             setData(d);
@@ -48,9 +50,16 @@ export default function Report() {
         getBalance();
     }, []);
 
+    function getByDate() {
+        data.forEach((e) => {
+
+        });
+    }
+
     return (
         <View style={styles.container}>
             <FlatList
+            showsVerticalScrollIndicator = {false}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
@@ -58,6 +67,7 @@ export default function Report() {
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         height: '65%',
