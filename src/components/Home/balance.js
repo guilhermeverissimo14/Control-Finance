@@ -31,6 +31,7 @@ export default function Balance() {
                     d.push(balance);
                 });
                 setData(d);
+                sumCapital();
             })
             .catch((e) => {
                 console.log('Erro: ' + e);
@@ -53,9 +54,7 @@ export default function Balance() {
                     d.push(value);
                 });
                 setExpemseList(d);
-                expemseList.forEach((e) => {
-                    //console.log(e.val);
-                })
+                sumExpense();
 
             })
             .catch((e) => {
@@ -65,12 +64,12 @@ export default function Balance() {
 
     function sumExpense() {
         let sum = 0;
-        
-            expemseList.forEach((e) => {
-                if ((e.val != NaN) && !e.val == '') 
+
+        expemseList.forEach((e) => {
+            if ((e.val != NaN) && !e.val == '')
                 sum += parseFloat(e.val);
-            });
-    
+        });
+
         setExpense(sum);
         //console.log(sum);
     }
@@ -80,23 +79,21 @@ export default function Balance() {
         data.forEach((element) => {
             if ((element.val != NaN) && !element.val == '') {
                 sum = sum + parseFloat(element.val);
-                // console.log(element.val);
+                //console.log(element.val);
             }
         })
         setCapital(sum);
     }
 
-    function calculateBalance(){
+    function calculateBalance() {
         setBalance(capital - expense);
     }
-
+    
     useEffect(() => {
         getBalance();
-        sumCapital();
         getExpense();
-        sumExpense();
         calculateBalance();
-    }, [])
+    }, [expense, capital, data, expemseList, balance])
 
     function handleReport() {
         navigation.navigate("report");
@@ -109,7 +106,7 @@ export default function Balance() {
                     <View style={styles.valores}>
 
                         <Text style={styles.simbolo1}> R$ </Text>
-                        <Text style={styles.valor}> {Number(capital)?.toFixed(2) }</Text>
+                        <Text style={styles.valor}> {Number(capital)?.toFixed(2)}</Text>
                         <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon}
                                 source={require('../../assets/Edit.png')}

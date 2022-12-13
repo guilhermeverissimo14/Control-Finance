@@ -3,6 +3,8 @@ import { View, Text, StyleSheet,  FlatList} from 'react-native';
 import colors from '../../global/color';
 import firestore from '@react-native-firebase/firestore';
 
+
+
 export default function Report() {
     const [data, setData] = useState([]);
 
