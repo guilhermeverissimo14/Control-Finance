@@ -5,16 +5,17 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function Report() {
     const [data, setData] = useState([]);
-    const Item = ({title}) => (
-        <View>
-            <Text style={styles.text}> {title}</Text>
-            <Text style={styles.text}>{title}</Text>
+
+    const Item = ({ description, value }) => (
+        <View style={styles.list}>
+            <Text style={styles.text}>{description}</Text>
+            <Text style={styles.text}>R$ {Number(value)?.toFixed(2)}</Text>
         </View>
         
     );
 
-    const renderItem = ({item}) => (
-        <Item title={title}/>
+    const renderItem = ({ item }) => (
+        <Item description={item.description} value={item.val}/>
     );
 
     const getBalance = () => {
@@ -23,9 +24,10 @@ export default function Report() {
         .get()
         .then((querySnapshot) => {
             let d = [];
-            querySnapshot.forEach((doc) => {
-                console.log(doc.description, " => ", doc.data());
+            querySnapshot.forEach((doc, index) => {
+                //console.log(doc.description, " => ", doc.data());
                 const balance = {
+                    id: index.toString(),
                     description: doc.data().description,
                     val: doc.data().val
                 };
@@ -47,19 +49,9 @@ export default function Report() {
             <FlatList
                 data={data}
                 renderItem={renderItem}
-                keyExtractor={item => item.description}
+                keyExtractor={item => item.id}
             />
-            {/* <View style={styles.item}>
-                <Text style={styles.text}> Sálario</Text>
-                <Text style={styles.text}> R$ 1.800,00</Text>
-            </View>
             <View style={styles.line} />
-            <View style={styles.item1}>
-                <Text style={styles.text}> Conta </Text>
-                <Text style={styles.text}> R$ 74,19</Text>
-            </View> */}
-            <View style={styles.line} />
-           
         </View>
     );
 }
@@ -74,6 +66,11 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginStart: 18,
         marginEnd: 18,
+    },
+    list:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     item: {
         flexDirection: 'row',
