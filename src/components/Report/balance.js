@@ -7,11 +7,15 @@ export default function Report() {
     const [data, setData] = useState([]);
 
     const Item = ({ description, value }) => (
+        <>
         <View style={styles.list}>
-            <Text style={styles.text}>{description}</Text>
+            <View style={{width:'60%'}}>
+                <Text numberOfLines={1} ellipsizeMode='tail' style={styles.text}>{description}</Text>
+            </View>
             <Text style={styles.text}>R$ {Number(value)?.toFixed(2)}</Text>
         </View>
-        
+        <View style={styles.line} />    
+        </>
     );
 
     const renderItem = ({ item }) => (
@@ -51,7 +55,6 @@ export default function Report() {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-            <View style={styles.line} />
         </View>
     );
 }
@@ -91,5 +94,6 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 18,
+        textTransform: 'capitalize',
     },
 });    
