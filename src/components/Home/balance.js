@@ -1,12 +1,102 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import colors from '../../global/color';
+import { useState } from 'react';
+import firestore from '@react-native-firebase/firestore';
 
 import { useNavigation } from '@react-navigation/native';
 
 
 export default function Balance() {
+    const [data, setData] = useState([]);
+    const [expemseList, setExpemseList] = useState([]);
+    const [expense, setExpense] = useState(0);
+    const [capital, setCapital] = useState(0);
+    const [balance, setBalance] = useState(0);
     const navigation = useNavigation();
+
+    const getBalance = () => {
+        firestore()
+            .collection('capital')
+            .get()
+            .then((querySnapshot) => {
+                let d = [];
+                querySnapshot.forEach((doc, index) => {
+                    //console.log(doc.description, " => ", doc.data());
+                    const balance = {
+                        id: index.toString(),
+                        description: doc.data().description,
+                        val: doc.data().val
+                    };
+                    d.push(balance);
+                });
+                setData(d);
+            })
+            .catch((e) => {
+                console.log('Erro: ' + e);
+            });
+    }
+
+    const getExpense = () => {
+        firestore()
+            .collection('expense')
+            .get()
+            .then((querySnapshot) => {
+                let d = [];
+                querySnapshot.forEach((doc, index) => {
+                    //console.log(doc.description, " => ", doc.data());
+                    const value = {
+                        id: index.toString(),
+                        description: doc.data().description,
+                        val: doc.data().val
+                    };
+                    d.push(value);
+                });
+                setExpemseList(d);
+                expemseList.forEach((e) => {
+                    //console.log(e.val);
+                })
+
+            })
+            .catch((e) => {
+                console.log('Erro: ' + e);
+            });
+    }
+
+    function sumExpense() {
+        let sum = 0;
+        
+            expemseList.forEach((e) => {
+                if ((e.val != NaN) && !e.val == '') 
+                sum += parseFloat(e.val);
+            });
+    
+        setExpense(sum);
+        //console.log(sum);
+    }
+
+    function sumCapital() {
+        var sum = 0;
+        data.forEach((element) => {
+            if ((element.val != NaN) && !element.val == '') {
+                sum = sum + parseFloat(element.val);
+                // console.log(element.val);
+            }
+        })
+        setCapital(sum);
+    }
+
+    function calculateBalance(){
+        setBalance(capital - expense);
+    }
+
+    useEffect(() => {
+        getBalance();
+        sumCapital();
+        getExpense();
+        sumExpense();
+        calculateBalance();
+    }, [])
 
     function handleReport() {
         navigation.navigate("report");
@@ -19,7 +109,7 @@ export default function Balance() {
                     <View style={styles.valores}>
 
                         <Text style={styles.simbolo1}>R$</Text>
-                        <Text style={styles.valor}> 1800,00</Text>
+                        <Text style={styles.valor}>{Number(capital)?.toFixed(2)}</Text>
                         <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon}
                                 source={require('../../assets/Edit.png')}
@@ -36,7 +126,7 @@ export default function Balance() {
                     <View style={styles.valores}>
 
                         <Text style={styles.simbolo}> R$</Text>
-                        <Text style={styles.valor1}> 1800,00 </Text>
+                        <Text style={styles.valor1}>{Number(expense)?.toFixed(2)}</Text>
                         <TouchableOpacity onPress={handleReport}>
                             <Image style={styles.icon1}
                                 source={require('../../assets/Edit.png')}
@@ -53,7 +143,7 @@ export default function Balance() {
                     <View style={styles.valores}>
 
                         <Text style={styles.simbolo2}> R$ </Text>
-                        <Text style={styles.valor2}> 1800,00</Text>
+                        <Text style={styles.valor2}>{Number(balance)?.toFixed(2)}</Text>
 
                     </View>
                 </View>
