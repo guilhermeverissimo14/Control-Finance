@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         borderRadius: 30,
-
     },
     mes: {
         fontSize: 14,

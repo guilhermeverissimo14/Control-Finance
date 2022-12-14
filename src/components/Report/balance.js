@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet,  FlatList} from 'react-native';
 import colors from '../../global/color';
 import firestore from '@react-native-firebase/firestore';
+import { format, compareAsc } from 'date-fns';
 
 export default function Report(props) {
     const [data, setData] = useState([]); 
-    const [dataByDate, setdatabyDate] = useState([]); 
 
     const Item = ({ description, value }) => (
         <>
@@ -29,6 +29,8 @@ export default function Report(props) {
         .get()
         .then((querySnapshot) => {
             let d = [];
+            let mes = [];
+            let ano = [];
             querySnapshot.forEach((doc, index) => {
                 const balance = {
                     id: index.toString(),
@@ -36,8 +38,11 @@ export default function Report(props) {
                     selectedDate: doc.data().selectedDate,
                     val: doc.data().val
                 };
-
-                d.push(balance);
+                ano = balance.selectedDate[0] + balance.selectedDate[1] + balance.selectedDate[2] + balance.selectedDate[3];
+                mes = balance.selectedDate[5] + balance.selectedDate[6];
+                if(mes == props.currentMonth && ano == props.currentYear){
+                    d.push(balance);
+                }
             });
             setData(d);
         })
@@ -49,12 +54,6 @@ export default function Report(props) {
     useEffect(() => {
         getBalance();
     }, []);
-
-    function getByDate() {
-        data.forEach((e) => {
-
-        });
-    }
 
     return (
         <View style={styles.container}>

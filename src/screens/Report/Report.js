@@ -11,7 +11,6 @@ export default function Report() {
   const [currentMonth, setCurrentMonth] = useState(date.getMonth() + 1);
 
   const backMonth = () => {
-    console.log(currentYear);
     if (currentMonth === 1) {
       setCurrentMonth(12);
       setCurrentYear(currentYear - 1);
@@ -32,7 +31,7 @@ export default function Report() {
   return (
     <View style={styles.container}>
       <Header currentMonth={currentMonth} currentYear={currentYear} backMonth={backMonth} nextMonth={nextMonth}/>
-      <Balance currentMonth={currentMonth} currentYear={currentYear}/>
+      <Balance currentMonth={currentMonth} currentYear={currentYear} backMonth={backMonth} nextMonth={nextMonth}/>
       <Navigation />
     </View>
   );
