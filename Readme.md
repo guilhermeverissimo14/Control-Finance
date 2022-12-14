@@ -65,6 +65,6 @@ Quer fazer parte desse projeto? Crie uma branch nova , seguindo a mesma estrutur
 
 ## 📝 Licença
 
-Esse projeto é de uso livre para qualquer estudante de programação.
+Para uso de algo desse projeto, deve-se dar os devidos créditos aos criadores
 
 [⬆ Voltar ao topo](#Control-Finance)<br>
