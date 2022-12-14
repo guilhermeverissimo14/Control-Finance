@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Modal, Alert, Pressable } from 'react-native';
-
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import DatePicker from 'react-native-modern-datepicker';
-
 import colors from '../../global/color';
 import Header from '../../components/Add/header';
-
 import { useNavigation } from '@react-navigation/native';
-
 import firestore from '@react-native-firebase/firestore';
+import CurrencyInput from 'react-native-currency-input';
 
 export default function Addi() {
-
-    //naviation
-    const navigation = useNavigation();
-
-    function handleReport() {
-        navigation.navigate("report");
-    }
-    function handleSigIn() {
-        navigation.navigate("home");
-    }
-    function handleAdd() {
-        navigation.navigate("add");
-    }
-
     const [description, setDescrition] = useState('');
     const [val, setValue] = useState(0);
     const [selectedDate, setSelectedDate] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [capital, setCapital] = useState(true);
     const [valid, setValid] = useState(false);
+    const navigation = useNavigation();
+
+    function handleReport() {
+        navigation.navigate("report");
+    }
+
+    function handleSigIn() {
+        navigation.navigate("home");
+    }
+
+    function handleAdd() {
+        navigation.navigate("add");
+    }
+
 
     useEffect(()=>{
         if (description.length < 1 || !val ||  selectedDate.length < 1 ){
@@ -50,20 +46,20 @@ export default function Addi() {
     }
 
     function handleCapital() {
-            firestore()
-                .collection('capital')
-                .add({
-                    description,
-                    val,
-                    selectedDate,
-                    created_at: firestore.FieldValue.serverTimestamp()
+        firestore()
+            .collection('capital')
+            .add({
+                description,
+                val,
+                selectedDate,
+                created_at: firestore.FieldValue.serverTimestamp()
 
-                })
-                .then(() => {
-                    Alert.alert("Capital", "Capital cadastrado com sucesso!")
-                    navigation.goBack();
-                })
-                .catch((error) => console.log(error));
+            })
+            .then(() => {
+                Alert.alert("Capital", "Capital cadastrado com sucesso!")
+                navigation.goBack();
+            })
+            .catch((error) => console.log(error));
     }
 
     function handleExpense() {
@@ -153,7 +149,23 @@ export default function Addi() {
 
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <View style={styles.input}>
+                            <CurrencyInput
+                                placeholder="R$ 0,00"
+                                placeholderTextColor="#fff"
+                                style={{ color: "#FFF" }}
+                                value={val}
+                                onChangeValue={setValue}
+                                prefix="R$ "
+                                delimiter="."
+                                separator=","
+                                precision={2}
+                                minValue={0}
+                                onChangeText={(formattedValue) => {
+                                    console.log(formattedValue); // R$ 100,00
+                                }}
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.button}>
@@ -225,7 +237,23 @@ export default function Addi() {
                     </View>
                     <View style={styles.campos}>
                         <Text style={styles.text}> Valor</Text>
-                        <TextInput placeholder="R$ 0,00" keyboardType='number-pad1' onChangeText={setValue} value={val} placeholderTextColor={colors('white')} style={styles.input}></TextInput>
+                        <View style={styles.input}>
+                            <CurrencyInput
+                                placeholder="R$ 0,00"
+                                placeholderTextColor="#fff"
+                                style={{ color: "#FFF" }}
+                                value={val}
+                                onChangeValue={setValue}
+                                prefix="R$ "
+                                delimiter="."
+                                separator=","
+                                precision={2}
+                                minValue={0}
+                                onChangeText={(formattedValue) => {
+                                    console.log(formattedValue); // R$ 100,00
+                                }}
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.button}>
